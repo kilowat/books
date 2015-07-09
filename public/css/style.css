@@ -1,0 +1,101 @@
+
+html, body {
+    height: 100%;
+}
+main {
+    padding-bottom: 20px;
+}
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -115px; /* the bottom margin is the negative value of the footer's height */
+}
+.footer, .push {
+    height: 100px; /* .push must be the same height as .footer */
+}
+.push{
+	clear:both;
+}
+body{
+	padding-top:70px;
+}
+
+/*main page wigets*/
+.widgets{
+	margin-top:10px;
+	
+}
+.widgets li{
+	margin-bottom: 10px;
+}
+.widgets ul{
+	margin: 0px;
+    padding: 5px;
+	list-style:none;
+}
+.widget.new-user ul{
+	height:90px;
+	display:table-row;
+}
+.widget.new-user ul li{
+    display: table-cell;
+    padding: 5px;
+    text-align: center;
+    width: 90px;
+}
+.widget.new-user .avatar {
+    display: block;
+}
+.row.widgets .widget {
+	min-height: 350px;
+    border: 1px solid #ccc;
+}
+.row.widgets .widget h4 {
+   text-align:center;
+}
+/*************/
+.pagination-wrapper{
+	text-align:center;
+}
+
+/***start publish list*******/
+.publish-list ul{
+	list-style:none;
+	padding:0px;
+	margin-bottom:20px;
+	
+}
+/***end publish list********/
+
+/***start profile page**/
+.row.profile-top {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding-top: 20px;
+}
+.name-profile {
+    border-bottom: 1px none springgreen;
+    font-size: 2em;
+}
+/***end profile page********/
+
+/*******start publish detail*******/
+.botton-panel {
+    background: #f8f8f8 none repeat scroll 0 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+	margin-bottom: 15px;
+}
+
+/********end publish detail***************/
+nav{
+	height:50px;
+}
+footer {
+	background: #f5f5f5 none repeat scroll 0 0;
+    border-top: 1px solid #ccc;
+    height: 100px;
+    margin-top: 15px;
+}
