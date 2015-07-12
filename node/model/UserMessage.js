@@ -1,6 +1,5 @@
 function UserMessage(){
 	this.db  = require('./db');
-	this.db.connect();
 }
 UserMessage.prototype.messageAdd = function(params){
 	
@@ -14,6 +13,9 @@ UserMessage.prototype.messageAdd = function(params){
 	  console.log('The solution is: ', result);
 	});
 	 
+}
+UserMessage.prototype.connect = function(){
+	this.db.connect();
 }
 UserMessage.prototype.disconnect = function(){
 	this.db.end();

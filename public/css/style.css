@@ -93,6 +93,32 @@ body{
 nav{
 	height:50px;
 }
+/****send message page****/
+.messages-list {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    max-height: 500px;
+    overflow-y: scroll;
+    margin:0px;
+	padding-left:10px;
+	list-style:none;
+}
+.messages-list > li {
+    border: 1px solid #ccc;
+    border-radius: 9px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 10px;
+}
+.message-in{
+	margin-left:10px;
+	background: #f3f3f3 none repeat scroll 0 0;
+}
+.message-out{
+	 background: #f3ede1 none repeat scroll 0 0;
+}
+/***end seng message list ****/
+
 footer {
 	background: #f5f5f5 none repeat scroll 0 0;
     border-top: 1px solid #ccc;
