@@ -29,4 +29,9 @@ Route::get('user/profile/messages/show',[
 		'middleware'=>'auth',
 		'uses'=>'MessagesController@show'
 ]);
+Route::get('user/profile/{id}/messages/send',[
+		'as'=>'user.messages.send',
+		'middleware'=>'auth',
+		'uses'=>'MessagesController@send'
+]);
 Route::controller('auth', 'Auth\AuthController');
