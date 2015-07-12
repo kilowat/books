@@ -1,0 +1,17 @@
+{
+  "name": "messager",
+  "version": "1.0.0",
+  "description": "messager package",
+  "main": "server.js",
+  "dependencies": {
+    "socket.io": "^1.3.5",
+    "mysql": "^2.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "author": "kilowat",
+  "license": "ISC"
+}
