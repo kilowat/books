@@ -3,7 +3,7 @@ function UserMessage(){
 }
 UserMessage.prototype.messageAdd = function(params){
 	
-		var q = 'INSERT INTO user_messages (user_id,user_send_id,text,message_type,confirmed) VALUES('+params.user_id+','+params.user_send_id+',"'+params.text+'","'+params.message_type+'",true)';
+		var q = 'INSERT INTO user_messages (user_id,user_send_id,text,message_type,confirmed) VALUES('+params.user_id+','+params.user_send_id+',"'+params.text+'","'+params.message_type+'",0)';
 	
 	 
 
@@ -13,12 +13,6 @@ UserMessage.prototype.messageAdd = function(params){
 	  console.log('The solution is: ', result);
 	});
 	 
-}
-UserMessage.prototype.connect = function(){
-	this.db.connect();
-}
-UserMessage.prototype.disconnect = function(){
-	this.db.end();
 }
 
 module.exports = new UserMessage();

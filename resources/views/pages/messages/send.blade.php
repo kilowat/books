@@ -23,6 +23,15 @@
 	<!--end left sidebar-->
 	<div class="col-md-6">
 		<main class="content">
+			<div class="message-send-input">
+				<div>
+					<textarea id="msg"></textarea>
+				</div>
+				<div>
+					<button onClick="send()" id="send">Отпавить</button>
+				</div>
+				<div id="con-status"></div>
+			</div>
 			<ul id="chat" class="messages-list">
 				@foreach($userMsg as $item)
 					@if($item->message_type === 'out')
@@ -41,44 +50,21 @@
 						</li>
 					@endif
 				@endforeach
-			</ul>
-			
-			<div class="message-send-input">
-				<div>
-					<textarea id="msg"></textarea>
-				</div>
-				<div>
-					<button onClick="send()" id="send">Отпавить</button>
-				</div>
-				<div id="con-status"></div>
-			</div>
-				
+			</ul>		
 		</main>
 	</div>
 	<div class="push"></div>
 </div>
 	<script>
-		  var socket = io('http://localhost:81');
+		  
 		  var chat = document.getElementById('chat');
 		  var con = document.getElementById('con-status');
-		 
-		  var curUser = {{Auth::user()->id}};
+
 		  var userSend = {{$id}};
-		  var curUserName = '{{Auth::user()->name}}';
-		  
-		  socket.on('connect', function (data) {
-			  socket.emit('join',curUser);
-			  socket.id = curUser; 
-			  con.innerHTML = 'Подключились';
-		  });
-		
-		  socket.on('disconnect', function (data) {
-			  socket.emit('leave',curUser)
-			  con.innerHTML ='Отключились';	
-		  });
 		  
 		  
 		  socket.on('send', function (data) {
+
 			var li = document.createElement('li');
 			var html = '';
 			
@@ -91,7 +77,10 @@
 			chat.appendChild(li);
 		  });
 
+
+		  
 		socket.on('in',function(data){
+			socket.emit('messageTake',curUser);
 			var li = document.createElement('li');
 			var html = '';
 			li.className = "message-in";

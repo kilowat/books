@@ -17,6 +17,33 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="http://localhost:81/socket.io/socket.io.js"></script>
+    <script>
+    	socket = io('http://localhost:81')
+    </script>
+    <script>
+	  var curUser = {{Auth::user()->id}};
+
+	  var curUserName = '{{Auth::user()->name}}';
+	  
+	  socket.on('connect', function (data) {
+		  socket.id = curUser; 
+		  socket.emit('join',curUser);
+
+	  });
+	
+	  socket.on('disconnect', function (data) {
+		  socket.emit('leave',curUser)
+
+	  });
+
+    
+    /**this code need writing is out from this block code*/
+		socket.on('inMsgSignal',function(data){
+		alert('У вас новое сообщение')
+	 	}); 
+
+/*************************/
+    </script>
   </head>
   <body>
   
