@@ -36,7 +36,7 @@
 				@foreach($userMsg as $item)
 					@if($item->message_type === 'out')
 						<li class="message-out">
-							<span>отправил кто:{{$item->user_id}}<span><br>
+							<span>отправил кто:{{$item->user->name}}<span><br>
 							<span>кому:{{$item->user_send_id}}<span><br>
 							<span>Сообщение:{{$item->text}}<span><br>
 						</li>

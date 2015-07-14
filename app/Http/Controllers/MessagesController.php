@@ -23,14 +23,10 @@ class MessagesController extends Controller
 		
 		$userMsg = $userMessage
 					->where('user_id','=',$curUserId)
+					->with('user')
 					->get();
-		/*
-		 * 		
-		$userMsg = $userMessage->with(['user'=>function($query,$curUserId){
-			$query->where('user_id','=',$curUserId);
-		}])->get();
-		 */
-		dd($userMsg);
+		
+		
 		return view('pages.messages.send',compact('userPage','userMsg'));
 	}
     //

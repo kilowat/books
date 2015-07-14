@@ -8,7 +8,7 @@ class UserMessage extends Model
 {
     public function user(){
     	
-    	$this->belongsTo('\App\Model\User','user_id','id');
+    	return $this->belongsTo('\App\Model\User','user_id','id');
     	
     }
 }
