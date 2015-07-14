@@ -5,6 +5,7 @@ var fs = require('fs');
 app.listen(81);
 io.on('connection', function (socket) {
 	socket.emit('connect');
+	
 	socket.on('join',function(user){
 		socket.join(user.id);
 
@@ -16,22 +17,15 @@ io.on('connection', function (socket) {
 	
 	socket.on('send', function (data) {
 		var userMessageModel = require('./model/UserMessage');
-		var forGetUserData ={
-				user_id:data.user_id,
-				user_send_id:data.user_send_id,
-				text:data.text,
-				message_type:'in',
-				
-		};
 		//console.log(messageStore);
-		socket.to(data.user_send_id).emit('in',forGetUserData);
+		socket.to(data.incom.user.id).emit('in',data.incom);
 		
-		socket.to(data.user_send_id).emit('inMsgSignal',forGetUserData);
+		socket.to(data.incom.user.id).emit('inMsgSignal',data.incom);
 		
-		socket.emit('send',data);
+		socket.emit('send',data.out);
 		
-		userMessageModel.messageAdd(data);
-		userMessageModel.messageAdd(forGetUserData);
+		userMessageModel.messageAdd(data.out);
+		userMessageModel.messageAdd(data.incom);
 
 	  });
 	

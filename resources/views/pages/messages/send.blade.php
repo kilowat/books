@@ -59,9 +59,11 @@
 		  
 		  var chat = document.getElementById('chat');
 		  var con = document.getElementById('con-status');
-
-		  var userSend = {{$id}};
-		  
+		  var userIn = {
+				id:'{{$userPage->id}}',
+				name:'{{$userPage->name}}',
+				ava:'ava_test',
+			}
 		  
 		  socket.on('send', function (data) {
 
@@ -69,8 +71,9 @@
 			var html = '';
 			
 			li.className = "message-out";
-			html+='<span>Отправил кто:'+data.user_id+'</span><br>';
-			html+='<span>Кому:'+data.user_send_id+'</span><br>';
+			html+='<span>Отправил кто:'+data.user.name+'</span><br>';
+			html+='<span>ава:'+data.user.ava+'</span><br>';
+			html+='<span>Кому:'+data.userSend.name+'</span><br>';
 			html+= '<span>Сообщение:'+data.text+'</span><br>';
 			li.innerHTML = html;
 			
@@ -84,21 +87,31 @@
 			var li = document.createElement('li');
 			var html = '';
 			li.className = "message-in";
-			html+='<span>Отправил кто:'+data.user_id+'</span><br>';
-			html+='<span>Кому:'+data.user_send_id+'</span><br>';
+			html+='<span>Отправил кто:'+data.userSend.name+'</span><br>';
+			html+='<span>ава:'+data.userSend.ava+'</span><br>';
+			html+='<span>Кому:'+data.user.name+'</span><br>';
 			html+= '<span>Сообщение:'+data.text+'</span><br>';
 			li.innerHTML = html;
 			chat.appendChild(li);
 		});		  
 					
 		function send(){
-		  var msg = document.getElementById('msg').value;
-			socket.emit('send',{
-						user_id:curUser.id,
-						user_send_id:userSend,
-						text:msg,
-						message_type:'out'
-			});
+			var msg = document.getElementById('msg').value;
+			var sendMsg = {
+				'incom':{
+					'user':userIn,
+					'userSend':curUser,
+					'text':msg,
+					'message_type':'in',
+				},
+				'out':{
+					'user':curUser,
+					'userSend':userIn,
+					'text':msg,
+					'message_type':'out'	
+				}
+			};
+			socket.emit('send',sendMsg);
 		  }
 		</script>
 @endsection

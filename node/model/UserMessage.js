@@ -3,8 +3,7 @@ function UserMessage(){
 }
 UserMessage.prototype.messageAdd = function(params){
 	
-		var q = 'INSERT INTO user_messages (user_id,user_send_id,text,message_type,confirmed) VALUES('+params.user_id+','+params.user_send_id+',"'+params.text+'","'+params.message_type+'",0)';
-	
+		var q = 'INSERT INTO user_messages (user_id,user_send_id,text,message_type,confirmed) VALUES('+params.user.id+','+params.userSend.id+',"'+params.text+'","'+params.message_type+'",0)';
 	 
 
 		this.db.query(q, function(err, result) {

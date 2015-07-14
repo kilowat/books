@@ -2,6 +2,7 @@
 	  var curUser = {
 				'id':{{Auth::user()->id}},
 				'name':'{{Auth::user()->name}}',
+				'ava':'mini_ava_1.png',
 			  };
 	  
 	  socket.on('connect', function (data) {
