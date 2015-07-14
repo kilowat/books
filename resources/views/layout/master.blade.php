@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -16,34 +16,15 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script src="http://localhost:81/socket.io/socket.io.js"></script>
-    <script>
-    	socket = io('http://localhost:81')
-    </script>
-    <script>
-	  var curUser = {{Auth::user()->id}};
-
-	  var curUserName = '{{Auth::user()->name}}';
-	  
-	  socket.on('connect', function (data) {
-		  socket.id = curUser; 
-		  socket.emit('join',curUser);
-
-	  });
-	
-	  socket.on('disconnect', function (data) {
-		  socket.emit('leave',curUser)
-
-	  });
-
+    <script src="http://192.168.1.5:81/socket.io/socket.io.js"></script>
+    <script src="/js/app.js"></script>
     
-    /**this code need writing is out from this block code*/
-		socket.on('inMsgSignal',function(data){
-		alert('У вас новое сообщение')
-	 	}); 
-
-/*************************/
-    </script>
+   	@if(Auth::check())
+   		@include('auth.socket_connect')
+   	@endif
+   	
+    @yield('javascripts')
+    
   </head>
   <body>
   
@@ -62,6 +43,9 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		@include('pages.user.user_link')
+		<div class="navbar-text">Status:
+			<span id="signal-status"></span>
+		</div>
 		  <ul class="nav navbar-nav">
 			<li class="active"><a href="/">Главная <span class="sr-only">Главная</span></a></li>
 			<li><a href="">Библиотека</a></li>

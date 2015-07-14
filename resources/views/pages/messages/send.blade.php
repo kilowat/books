@@ -94,7 +94,7 @@
 		function send(){
 		  var msg = document.getElementById('msg').value;
 			socket.emit('send',{
-						user_id:curUser,
+						user_id:curUser.id,
 						user_send_id:userSend,
 						text:msg,
 						message_type:'out'
