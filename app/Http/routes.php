@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/',[
 	'as'=>'pages.index',
 	'uses'=>'PageController@index',

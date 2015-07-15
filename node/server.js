@@ -1,8 +1,23 @@
 var app = require('http').createServer()
 var io = require('socket.io')(app);
 var fs = require('fs');
+var Redis = require('ioredis');
+var redis = new Redis();
 
 app.listen(81);
+
+redis.subscribe('user-channel', function(err, count) {
+
+});
+redis.on('message', function(channel, message) {
+	//console.log('Message Recieved: ' + message);
+	message = JSON.parse(message);
+
+	io.emit(channel + ':' + message.event, message.data);
+}); 
+
+
+
 io.on('connection', function (socket) {
 	socket.emit('connect');
 	
@@ -34,10 +49,15 @@ io.on('connection', function (socket) {
 		console.log('user'+userId+'take message');
 	});	  
 	 socket.on('disconnect',function(){
-
+	 	//redis.unsubscribe('user-channel');
 	 });
 
 	socket.on('error',function(e){
 		console.log(e);
-	});	 
+	});	
+
+	/****************************************/
+
+
 });
+
