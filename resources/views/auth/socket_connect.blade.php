@@ -6,7 +6,7 @@
 			  };
 	  
 	  socket.on('connect', function (data) {
-		  socket.id = curUser.id;
+		 socket.id = curUser.id;
 		  socket.emit('join',curUser);
 
 	  });
