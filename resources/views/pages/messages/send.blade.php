@@ -5,7 +5,7 @@
 	<div class="col-md-3">
 		<ul class="list-group">
 			<li class="list-group-item">
-				<span class="badge">14</span>
+				<span class="badge">{{$msgCountConf}}</span>
 				<a href="{{route('user.messages.show')}}">Мои сообщения</a>
 			</li>
 		 	<li class="list-group-item">
@@ -37,14 +37,14 @@
 					@if($item->message_type === 'out')
 						<li class="message-out">
 							<span>отправил кто:{{$item->user->name}}<span><br>
-							<span>кому:{{$item->user_send_id}}<span><br>
+							<span>кому:{{$item->userSend->name}}<span><br>
 							<span>Сообщение:{{$item->text}}<span><br>
 						</li>
 					@endif
 						
 					@if($item->message_type === 'in')
 						<li class="message-in">
-							<span>отправил кто:{{$item->user_send_id}}<span><br>
+							<span>отправил кто:{{$item->userSend->name}}<span><br>
 							<span>кому:{{$item->user_id}}<span><br>
 							<span>Сообщение:{{$item->text}}<span><br>
 						</li>
@@ -72,7 +72,7 @@
 			
 			li.className = "message-out";
 			html+='<span>Отправил кто:'+data.user.name+'</span><br>';
-			html+='<span>ава:'+data.user.ava+'</span><br>';
+			html+='<span>ава:'+data.user.avatar+'</span><br>';
 			html+='<span>Кому:'+data.userSend.name+'</span><br>';
 			html+= '<span>Сообщение:'+data.text+'</span><br>';
 			li.innerHTML = html;
@@ -83,12 +83,12 @@
 
 		  
 		socket.on('in',function(data){
-			socket.emit('messageTake',curUser);
+			socket.emit('messageTake',_app.getUser());
 			var li = document.createElement('li');
 			var html = '';
 			li.className = "message-in";
 			html+='<span>Отправил кто:'+data.userSend.name+'</span><br>';
-			html+='<span>ава:'+data.userSend.ava+'</span><br>';
+			html+='<span>ава:'+data.userSend.avatar+'</span><br>';
 			html+='<span>Кому:'+data.user.name+'</span><br>';
 			html+= '<span>Сообщение:'+data.text+'</span><br>';
 			li.innerHTML = html;
@@ -100,12 +100,12 @@
 			var sendMsg = {
 				'incom':{
 					'user':userIn,
-					'userSend':curUser,
+					'userSend': _app.getUser(),
 					'text':msg,
 					'message_type':'in',
 				},
 				'out':{
-					'user':curUser,
+					'user': _app.getUser(),
 					'userSend':userIn,
 					'text':msg,
 					'message_type':'out'	

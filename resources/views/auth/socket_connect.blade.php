@@ -1,18 +1,14 @@
 <script>  
-	  var curUser = {
-				'id':{{Auth::user()->id}},
-				'name':'{{Auth::user()->name}}',
-				'ava':'mini_ava_1.png',
-			  };
+	  _app.setUser({!!Auth::user()!!});
 	  
+	  console.log(_app.getUser());
 	  socket.on('connect', function (data) {
-		 socket.id = curUser.id;
-		  socket.emit('join',curUser);
+		 socket.id = _app.getUser().id;
+		  socket.emit('join',_app.getUser());
 
 	  });
 	
 	  socket.on('disconnect', function (data) {
-		  socket.emit('leave',curUser.id)
-
+		  socket.emit('leave',_app.getUser().id);
 	  });
 </script>

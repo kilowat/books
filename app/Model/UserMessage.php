@@ -11,4 +11,9 @@ class UserMessage extends Model
     	return $this->belongsTo('\App\Model\User','user_id','id');
     	
     }
+    public function userSend(){
+    	 
+    	return $this->belongsTo('\App\Model\User','user_send_id','id');
+    	 
+    }
 }

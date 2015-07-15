@@ -24,10 +24,16 @@ class MessagesController extends Controller
 		$userMsg = $userMessage
 					->where('user_id','=',$curUserId)
 					->with('user')
+					->with('userSend')
 					->get();
 		
+		$msgCountConf = $userMessage
+					->where('confirmed','=',0)
+					->where('user_id','=',$curUserId)
+					->where('message_type','=','in')
+					->count();
 		
-		return view('pages.messages.send',compact('userPage','userMsg'));
+		return view('pages.messages.send',compact('userPage','userMsg','msgCountConf'));
 	}
     //
 }

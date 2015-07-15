@@ -1,10 +1,30 @@
-socket = io('http://192.168.1.5:81');
+function Bapp(){
+	
+}
 
-socket.on('inMsgSignal',function(data){
-	document.getElementById('signal-status').innerHTML = 'Новое событие'
-});
+Bapp.prototype.setUser = function(user){
+	this._user = user;
+}
+Bapp.prototype.getUser = function(){
+	return this._user;
+}
 
-socket.on("user-channel:App\\Events\\UserLoginEvent", function(message){
-         // increase the power everytime we load test route
-        alert('test');
- }); 
+var _app = new Bapp();
+
+/******sockets listeners********/
+
+	socket = io('localhost:81');
+
+	socket.on('inMsgSignal',function(data){
+		document.getElementById('signal-status').innerHTML = 'Новое событие'
+	});
+
+	socket.on("user-channel:App\\Events\\UserLoginEvent", function(user){
+	         // increase the power everytime we load test route
+
+	 });
+	
+
+
+
+

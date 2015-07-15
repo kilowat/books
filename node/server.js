@@ -6,18 +6,6 @@ var redis = new Redis();
 
 app.listen(81);
 
-redis.subscribe('user-channel', function(err, count) {
-
-});
-redis.on('message', function(channel, message) {
-	//console.log('Message Recieved: ' + message);
-	message = JSON.parse(message);
-
-	io.emit(channel + ':' + message.event, message.data);
-}); 
-
-
-
 io.on('connection', function (socket) {
 	socket.emit('connect');
 	
@@ -60,4 +48,15 @@ io.on('connection', function (socket) {
 
 
 });
+
+redis.subscribe('user-channel', function(err, count) {
+
+});
+redis.on('message', function(channel, message) {
+	console.log('Message Recieved: ' + message);
+	message = JSON.parse(message);
+
+	io.sockets.emit(channel + ':' + message.event, message.data);
+}); 
+
 
