@@ -6,5 +6,5 @@ socket.on('inMsgSignal',function(data){
 
 socket.on("user-channel:App\\Events\\UserLoginEvent", function(message){
          // increase the power everytime we load test route
-        console.log(message);
+        alert('test');
  }); 

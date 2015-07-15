@@ -16,6 +16,8 @@ redis.on('message', function(channel, message) {
 	io.emit(channel + ':' + message.event, message.data);
 }); 
 
+
+
 io.on('connection', function (socket) {
 	socket.emit('connect');
 	
