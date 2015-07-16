@@ -50,7 +50,8 @@
 		</div>
 		  <ul class="nav navbar-nav">
 			<li class="active"><a href="/">Главная <span class="sr-only">Главная</span></a></li>
-			<li><a href="">Библиотека</a></li>
+			<li><a href="{{action('UserController@usersList')}}">Пользователи</a></li>
+      <li><a href="">Библиотека</a></li>
 			<li><a href="#">Новости</a></li>
 			<li><a href="#">Статьи</a></li>
 		  </ul>

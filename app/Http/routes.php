@@ -25,11 +25,19 @@ Route::get('user/profile/{user}',[
 
 Route::model('user','\App\Model\User');
 
+Route::get('user/list',[
+		'as'=>'user.list',
+		'middleware'=>'auth',
+		'uses'=>'UserController@usersList'
+]);
+/***************************/
+
 Route::get('user/profile/messages/show',[
 		'as'=>'user.messages.show',
 		'middleware'=>'auth',
 		'uses'=>'MessagesController@show'
 ]);
+
 Route::get('user/profile/{id}/messages/send',[
 		'as'=>'user.messages.send',
 		'middleware'=>'auth',

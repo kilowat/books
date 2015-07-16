@@ -3,21 +3,27 @@ var io = require('socket.io')(app);
 var fs = require('fs');
 var Redis = require('ioredis');
 var redis = new Redis();
-
+var activeUsers = {};
+var obj = {};
 app.listen(81);
 
 io.on('connection', function (socket) {
-	socket.emit('connect');
-	
-	socket.on('join',function(user){
-		socket.join(user.id);
 
+	socket.emit('connect');
+
+
+
+	socket.on('join',function(user){
+		var id = user.id;
+		socket.join(id);
+		//socket.id = id;
+		activeUsers['id_'+id] = user;
+		io.emit('usersOnline',activeUsers);
+		console.log('--------------------');
+			//console.log(socket.id);
 	});
 	
-	socket.on('leave',function(user){
-		socket.leave(user.id);
-	});
-	
+
 	socket.on('send', function (data) {
 		var userMessageModel = require('./model/UserMessage');
 		//console.log(messageStore);
@@ -37,6 +43,14 @@ io.on('connection', function (socket) {
 		console.log('user'+userId+'take message');
 	});	  
 	 socket.on('disconnect',function(){
+
+	 	//delete user from online collection
+	 	//console.log(activeUsers['id_'+socket.id]);
+		//if(activeUsers['id_'+socket.id]!==undefined)
+			//delete(activeUsers['id_'+socket.id]);
+		//console.log(activeUsers);
+		//io.emit('usersOnline',activeUsers);
+	 	socket.leave('socket.id');
 	 	//redis.unsubscribe('user-channel');
 	 });
 
@@ -44,6 +58,16 @@ io.on('connection', function (socket) {
 		console.log(e);
 	});	
 
+/*
+	setInterval(function(){
+		console.log(io.sockets.sockets);
+		console.log('------------------');
+		//socket.emit('usersOnline',activeUsers);
+	},1000) 
+*/
+
+console.log(process.memoryUsage());
+console.log(io.sockets);
 	/****************************************/
 
 
@@ -55,8 +79,9 @@ redis.subscribe('user-channel', function(err, count) {
 redis.on('message', function(channel, message) {
 	console.log('Message Recieved: ' + message);
 	message = JSON.parse(message);
+	io.emit(channel + ':' + message.event, message.data);
+});
 
-	io.sockets.emit(channel + ':' + message.event, message.data);
-}); 
+
 
 

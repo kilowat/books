@@ -11,6 +11,12 @@ use App\Model\User;
 class UserController extends Controller
 {
     public function profile(User $user){
+
 		return view('pages.user.profile',compact('user'));
+	}
+
+	public function usersList(User $users){
+
+		return view('pages.user.list',compact('users'));
 	}
 }

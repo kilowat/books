@@ -37,6 +37,7 @@
 					@if($item->message_type === 'out')
 						<li class="message-out">
 							<span>отправил кто:{{$item->user->name}}<span><br>
+							<span>ава:{{$item->user->avatar}}<span><br>
 							<span>кому:{{$item->userSend->name}}<span><br>
 							<span>Сообщение:{{$item->text}}<span><br>
 						</li>
@@ -45,6 +46,7 @@
 					@if($item->message_type === 'in')
 						<li class="message-in">
 							<span>отправил кто:{{$item->userSend->name}}<span><br>
+							<span>ава:{{$item->user->avatar}}<span><br>
 							<span>кому:{{$item->user_id}}<span><br>
 							<span>Сообщение:{{$item->text}}<span><br>
 						</li>
