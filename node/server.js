@@ -8,28 +8,22 @@ var obj = {};
 app.listen(81);
 
 io.on('connection', function (socket) {
-
+	
 	socket.emit('connect');
-
-
-
+	
 	socket.on('join',function(user){
 		var id = 'id_'+user.id;
 		socket.join(id);
 		socket.user_id = id;
-		//socket.id = id;
+
 		activeUsers[id] = user;
 		io.emit('usersOnline',activeUsers);
-		//console.log(socket);
 
-		console.log('--------------------');
-			//console.log(socket.id);
 	});
 	
-
 	socket.on('send', function (data) {
 		var userMessageModel = require('./model/UserMessage');
-		//console.log(messageStore);
+
 		socket.to(data.incom.user.id).emit('in',data.incom);
 		
 		socket.to(data.incom.user.id).emit('inMsgSignal',data.incom);
@@ -50,20 +44,11 @@ io.on('connection', function (socket) {
 		 var userInRoom = io.sockets.adapter.rooms[socket.user_id];
 		 if(userInRoom === undefined)
 			delete activeUsers[socket.user_id];
-		 console.log(activeUsers);
 		 io.emit('usersOnline',activeUsers)
-		//console.log(userLevae);
-		 
-		 
-		 
-	 	//delete user from online collection
-	 	//console.log(activeUsers['id_'+socket.id]);
-		//if(activeUsers['id_'+socket.id]!==undefined)
-			//delete(activeUsers['id_'+socket.id]);
-		//console.log(activeUsers);
-		//io.emit('usersOnline',activeUsers);
+
 	 	socket.leave(socket.user_id);
 	 	socket.leave(socket.id);
+	 	
 	 	//redis.unsubscribe('user-channel');
 	 });
 
