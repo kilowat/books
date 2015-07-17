@@ -11,8 +11,11 @@ use App\Model\User;
 class UserController extends Controller
 {
     public function profile(User $user){
-
-		return view('pages.user.profile',compact('user'));
+    	
+		if(\Auth::user()->id === $user->id)
+			return view('pages.user.curent_profile',compact('user'));
+		else
+			return view('pages.user.profile',compact('user'));
 	}
 
 	public function usersList(User $users){

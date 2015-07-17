@@ -11,7 +11,7 @@
 				<div class="row widgets">
 					<div class="col-md-4 hidden-sm hidden-xs ">
 						<div class="widget new-user">
-							<h4>Новые пользователи</h4>
+							<h4>Кто на сайте</h4>
 							<ul>
 								<li>
 									<a class="avatar" href=""><img src="images/avatar.jpg"></a>

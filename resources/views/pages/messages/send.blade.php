@@ -1,28 +1,17 @@
 @extends('layout.master')
 @section('content')
 <div class="row">
-<!--start left sidebar-->
-	<div class="col-md-3">
-		<ul class="list-group">
-			<li class="list-group-item">
-				<span class="badge">{{$msgCountConf}}</span>
-				<a href="{{route('user.messages.show')}}">Мои сообщения</a>
-			</li>
-		 	<li class="list-group-item">
-				<a href="">Мои публикации</a>
-			</li>
-			<li class="list-group-item">
-				<span class="badge">14</span>
-				<a href="">Мои Отзывы</a>
-			</li>
-			<li class="list-group-item">
-				<a href="">Мои закладки</a>
-			</li>
-	</ul>
-</div>
+	<!--start left sidebar-->
+	@include('pages.user.user_menu')
 	<!--end left sidebar-->
 	<div class="col-md-6">
 		<main class="content">
+			<div class="profile-info">
+				Переписка с {{$userPage->name}}
+				<div class="name-profile user-item" id="id_{{$userPage->id}}">
+					<div class="user-status-online">offline</div>
+				</div>
+			</div>
 			<div class="message-send-input">
 				<div>
 					<textarea id="msg"></textarea>

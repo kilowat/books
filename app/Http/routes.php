@@ -44,3 +44,11 @@ Route::get('user/profile/{id}/messages/send',[
 		'uses'=>'MessagesController@send'
 ]);
 Route::controller('auth', 'Auth\AuthController');
+
+/*****user publications********/
+Route::get('user/profile/publication/show',[
+		'as'=>'user.publication.show',
+		'middleware'=>'auth',
+		'uses'=>'PublicationController@show'
+]);
+/**************************/

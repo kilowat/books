@@ -21,6 +21,7 @@
 									<div class="user-status-online">offline</div>
 									<span>{{$user->name}}</span>
 								</div>
+								мой профиль
 								<span>Основное</span>
 								<ul>
 									<li>Возраст: Неуказан</li>

@@ -55,6 +55,9 @@
 			<li><a href="#">Новости</a></li>
 			<li><a href="#">Статьи</a></li>
 		  </ul>
+		  @if(Auth::check())
+			 <div class="navbar-right navbar-text"><a href="/auth/logout">Выйти</a></div>
+		 @endif
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
