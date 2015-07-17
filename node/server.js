@@ -4,7 +4,7 @@ var fs = require('fs');
 var Redis = require('ioredis');
 var redis = new Redis();
 var activeUsers = {};
-var obj = {};
+
 app.listen(81);
 
 io.on('connection', function (socket) {
@@ -22,11 +22,12 @@ io.on('connection', function (socket) {
 	});
 	
 	socket.on('send', function (data) {
+
 		var userMessageModel = require('./model/UserMessage');
 
-		socket.to(data.incom.user.id).emit('in',data.incom);
+		socket.to('id_'+data.incom.user.id).emit('in',data.incom);
 		
-		socket.to(data.incom.user.id).emit('inMsgSignal',data.incom);
+		socket.to('id_'+data.incom.user.id).emit('inMsgSignal',data.incom);
 		
 		socket.emit('send',data.out);
 		
@@ -44,6 +45,7 @@ io.on('connection', function (socket) {
 		 var userInRoom = io.sockets.adapter.rooms[socket.user_id];
 		 if(userInRoom === undefined)
 			delete activeUsers[socket.user_id];
+		 //update online user info
 		 io.emit('usersOnline',activeUsers)
 
 	 	socket.leave(socket.user_id);
