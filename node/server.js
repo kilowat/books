@@ -14,11 +14,14 @@ io.on('connection', function (socket) {
 
 
 	socket.on('join',function(user){
-		var id = user.id;
+		var id = 'id_'+user.id;
 		socket.join(id);
+		socket.user_id = id;
 		//socket.id = id;
-		activeUsers['id_'+id] = user;
+		activeUsers[id] = user;
 		io.emit('usersOnline',activeUsers);
+		//console.log(socket);
+
 		console.log('--------------------');
 			//console.log(socket.id);
 	});
@@ -43,14 +46,24 @@ io.on('connection', function (socket) {
 		console.log('user'+userId+'take message');
 	});	  
 	 socket.on('disconnect',function(){
-
+		// console.log(io.sockets.adapter.rooms);
+		 var userInRoom = io.sockets.adapter.rooms[socket.user_id];
+		 if(userInRoom === undefined)
+			delete activeUsers[socket.user_id];
+		 console.log(activeUsers);
+		 io.emit('usersOnline',activeUsers)
+		//console.log(userLevae);
+		 
+		 
+		 
 	 	//delete user from online collection
 	 	//console.log(activeUsers['id_'+socket.id]);
 		//if(activeUsers['id_'+socket.id]!==undefined)
 			//delete(activeUsers['id_'+socket.id]);
 		//console.log(activeUsers);
 		//io.emit('usersOnline',activeUsers);
-	 	socket.leave('socket.id');
+	 	socket.leave(socket.user_id);
+	 	socket.leave(socket.id);
 	 	//redis.unsubscribe('user-channel');
 	 });
 
@@ -60,14 +73,14 @@ io.on('connection', function (socket) {
 
 /*
 	setInterval(function(){
-		console.log(io.sockets.sockets);
+		console.log(activeUsers);
 		console.log('------------------');
 		//socket.emit('usersOnline',activeUsers);
 	},1000) 
 */
 
 console.log(process.memoryUsage());
-console.log(io.sockets);
+//console.log(io.sockets);
 	/****************************************/
 
 
