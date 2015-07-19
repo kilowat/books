@@ -11,6 +11,6 @@ class PublicationController extends Controller
 {
     public function show(){
     	
-    	return view('pages.messages.show');
+    	return view('pages.publications.show');
 	}
 }

@@ -17,12 +17,24 @@ Route::get('/',[
 	'uses'=>'PageController@index',
 		
 ]);
+
 Route::get('user/profile/{user}',[
 		'as'=>'user.profile',
 		'middleware'=>'auth',
 		'uses'=>'UserController@profile'
 ]);
 
+Route::get('user/edit',[
+		'as'=>'user.profile.edit',
+		'middleware'=>'auth',
+		'uses'=>'UserController@edit'
+]);
+
+Route::patch('user/update',[
+		'as'=>'user.profile.update',
+		'middleware'=>'auth',
+		'uses'=>'UserController@update'
+]);
 Route::model('user','\App\Model\User');
 
 Route::get('user/list',[
@@ -30,7 +42,6 @@ Route::get('user/list',[
 		'middleware'=>'auth',
 		'uses'=>'UserController@usersList'
 ]);
-/***************************/
 
 Route::get('user/profile/messages/show',[
 		'as'=>'user.messages.show',
@@ -43,7 +54,7 @@ Route::get('user/profile/{id}/messages/send',[
 		'middleware'=>'auth',
 		'uses'=>'MessagesController@send'
 ]);
-Route::controller('auth', 'Auth\AuthController');
+
 
 /*****user publications********/
 Route::get('user/profile/publication/show',[
@@ -52,3 +63,4 @@ Route::get('user/profile/publication/show',[
 		'uses'=>'PublicationController@show'
 ]);
 /**************************/
+Route::controller('auth', 'Auth\AuthController');

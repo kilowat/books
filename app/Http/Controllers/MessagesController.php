@@ -11,10 +11,32 @@ use App\Model\User;
 class MessagesController extends Controller
 {
 	
-	public function show(){
+	public function show(User $user,UserMessage $userMessage){
+		$res = [];
+		$userListOut = $userMessage->select('user_send_id')
+			->distinct()
+			->where('message_type','=','out')
+			->where('user_id','=',\Auth::user()->id)
+			->get();
+
+		foreach($userListOut as $msgOut){
+			$res[] = $msgOut->user_send_id;
+		}
 		
-		return view('pages.messages.show');
+		$userListIn = $userMessage->select('user_send_id')
+			->distinct()
+			->where('message_type','=','in')
+			->where('user_id','=',\Auth::user()->id)
+			->get();
+		
+		foreach($userListIn as $msgIn){
+			$res[] = $msgIn->user_send_id;
+		}
+
+		$userList = $user->whereIn('id',$res)->get();
+		return view('pages.messages.show',compact('userList'));
 	}
+	
 	
 	public function send($id,UserMessage $userMessage,User $user){
 		$curUserId = \Auth::user()->id;
@@ -23,6 +45,7 @@ class MessagesController extends Controller
 		
 		$userMsg = $userMessage
 					->where('user_id','=',$curUserId)
+					->where('user_send_id','=',$id)
 					->with('user')
 					->with('userSend')
 					->get();

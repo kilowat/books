@@ -12,7 +12,7 @@
 							    <div class="thumbnail">
 									<img src="/images/robo.jpg" alt="...">
 								</div>
-								<a href="{{route('user.messages.send',['id'=>$user->id])}}">Отпавить сообщение пользователю</a>
+							
 						</div>
 						<!--end ava-->
 						<div class="col-md-9">

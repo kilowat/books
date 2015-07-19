@@ -6,7 +6,11 @@
 	<!--end left sidebar-->
 	<div class="col-md-6">
 		<main class="content">
-		контент
+		<ul>
+		@foreach($userList as $user)
+			<li><a href="{{route('user.messages.send',['id'=>$user->id])}}">{{$user->name}}</a></li>
+		@endforeach
+		</ul>
 		</main>
 	</div>
 	<div class="push"></div>
