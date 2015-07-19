@@ -26,14 +26,16 @@ class UserController extends Controller
 		return view('pages.user.edit',compact('user'));
 	}
 	
-	public function update(User $user){
+	public function update(User $user, Request $request){
 		
 		$user = $user->where('id','=',\Auth::user()->id)->first();
-		$input = Input::all();
+		$request->avatar = 'test.png';
+		$input = $request->all();
+
 		$user->update($input);
 		$user->save();
 		
-		//Input::file('avatar')->move('/upload', 'test.png');
+		$request->file('avatar')->move(base_path('/upload'), 'test.png');
 	}
 	
 	public function usersList(User $users){

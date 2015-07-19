@@ -16,7 +16,7 @@
 						<!--end ava-->
 						<div class="col-md-9">
 							<div class="profile-list">
-								{!! Form::model($user, array('method'=>'patch','route' => array('user.profile.update')))!!}
+								{!! Form::model($user, array('method'=>'patch','route' => array('user.profile.update'),'enctype'=>'multipart/form-data'))!!}
 									<div class="input-group">
 										{!!Form::label('name','имя')!!}
 										{!!Form::text('name',$user->name,['class'=>'form-control'])!!}

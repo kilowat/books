@@ -20,6 +20,7 @@
 								<div class="name-profile user-item" id="id_{{$user->id}}">
 									<div class="user-status-online">offline</div>
 									<span>{{$user->name}}</span>
+									<a href="{{route('user.profile.edit')}}">Редактировать</a>
 								</div>
 								мой профиль
 								<span>Основное</span>
