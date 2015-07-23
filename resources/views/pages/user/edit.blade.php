@@ -11,7 +11,7 @@
 						<!--start ava-->
 						<div class="col-md-3">
 							    <div class="thumbnail">
-									<img src="/images/robo.jpg" alt="...">
+									<img src="{{$user->avatar}}" alt="...">
 								</div>
 						</div>
 						<!--end ava-->

@@ -24,7 +24,7 @@ class UserProfileEditRequest extends Request
     public function rules()
     {
         return [
-            'avatar' => 'required|mimes:jpeg,jpg,png|max:300'
+            'avatar' => 'required|mimes:jpeg,jpg,png|max:900'
          ];
 
 
