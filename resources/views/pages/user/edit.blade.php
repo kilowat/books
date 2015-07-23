@@ -1,5 +1,6 @@
 @extends('layout.master')
 @section('content')
+
 		<div class="row">
 			<!--start left sidebar-->
 			@include('pages.user.user_menu')
@@ -16,7 +17,7 @@
 						<!--end ava-->
 						<div class="col-md-9">
 							<div class="profile-list">
-								{!! Form::model($user, array('method'=>'patch','route' => array('user.profile.update'),'enctype'=>'multipart/form-data'))!!}
+								{!! Form::model($user, array('method'=>'patch','route' => array('user.profile.store'),'enctype'=>'multipart/form-data'))!!}
 									<div class="input-group">
 										{!!Form::label('name','имя')!!}
 										{!!Form::text('name',$user->name,['class'=>'form-control'])!!}
@@ -33,5 +34,15 @@
 				</main>
 			</div>
 		<div class="push"></div>
+			@if($errors->any())
+				<div class="alert alert-danger" role="alert">
+				@foreach($errors->all() as $error)
+					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					<span class="sr-only">Error:</span>
+					{{$error}}
+				@endforeach
+				</div>
+			@endif
 	</div>	
+
 @endsection

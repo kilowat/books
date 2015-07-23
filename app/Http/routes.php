@@ -30,10 +30,10 @@ Route::get('user/edit',[
 		'uses'=>'UserController@edit'
 ]);
 
-Route::patch('user/update',[
-		'as'=>'user.profile.update',
+Route::patch('user/store',[
+		'as'=>'user.profile.store',
 		'middleware'=>'auth',
-		'uses'=>'UserController@update'
+		'uses'=>'UserController@store'
 ]);
 Route::model('user','\App\Model\User');
 
