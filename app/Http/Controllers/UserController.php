@@ -26,8 +26,7 @@ class UserController extends Controller
 
 	public function edit(User $user){
 		$user = $user->where('id','=',\Auth::user()->id)->first();
-		
-		$user->avatar = '/upload/users/'.$user->id.'/avatar/normal/'.$user->avatar;
+		$user->avatar = '/upload/users/'.$user->id.'/avatar/normal_'.$user->avatar;
 		
 		return view('pages.user.edit',compact('user'));
 	}
@@ -44,9 +43,9 @@ class UserController extends Controller
 		$user->update($input);
 		$user->save();
 		
-		$request->file('avatar')->move(public_path('upload'.DS.'users'.DS.$user->id.DS.'avatar'.DS), $file_name.'_origin.'.$file_ex);
-		$img = Image::make(public_path('upload'.DS.'users'.DS.$user->id.DS.'avatar'.DS.$file_name.'_origin.'.$file_ex))->resize(300, 200);
-		$img->save(public_path('upload'.DS.'users'.DS.$user->id.DS.'avatar'.DS).$file_name.'_normal.'.$file_ex, 60);
+		$request->file('avatar')->move(public_path('upload'.DS.'users'.DS.$user->id.DS.'avatar'.DS), 'origin_'.$file_name.'.'.$file_ex);
+		$img = Image::make(public_path('upload'.DS.'users'.DS.$user->id.DS.'avatar'.DS.'origin_'.$file_name.'.'.$file_ex))->resize(300, 200);
+		$img->save(public_path('upload'.DS.'users'.DS.$user->id.DS.'avatar'.DS).'normal_'.$file_name.'.'.$file_ex, 60);
 // save file as png with medium quality
 
 		
