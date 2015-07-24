@@ -18,6 +18,11 @@ class UserController extends Controller
 		$this->userDisk = Storage::disk('users');
 	}
     public function profile(User $user){
+    	if($user->avatar)
+    		$user->avatar = '/upload/users/'.$user->id.'/avatar/normal_'.$user->avatar;
+    	else 
+    		$user->avatar = '/upload/images/default.jpg';
+
 		if(\Auth::user()->id === $user->id)
 			return view('pages.user.curent_profile',compact('user'));
 		else
@@ -26,7 +31,11 @@ class UserController extends Controller
 
 	public function edit(User $user){
 		$user = $user->where('id','=',\Auth::user()->id)->first();
-		$user->avatar = '/upload/users/'.$user->id.'/avatar/normal_'.$user->avatar;
+		
+    	if($user->avatar)
+    		$user->avatar = '/upload/users/'.$user->id.'/avatar/normal_'.$user->avatar;
+    	else 
+    		$user->avatar = '/upload/images/default.jpg';
 		
 		return view('pages.user.edit',compact('user'));
 	}
