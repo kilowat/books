@@ -3,7 +3,7 @@
 
 		<div class="row">
 			<!--start left sidebar-->
-			@include('pages.user.user_menu')
+			@widget('UserMenu')
 			<!--end left sidebar-->
 			<div class="col-md-9">
 				<main class="content">
@@ -11,7 +11,7 @@
 						<!--start ava-->
 						<div class="col-md-3">
 							    <div class="thumbnail">
-									<img src="{{$user->avatar}}" alt="...">
+									<img src="{{$user->avatarNormal($user)}}" alt="...">
 								</div>
 						</div>
 						<!--end ava-->

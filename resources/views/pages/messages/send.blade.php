@@ -2,7 +2,7 @@
 @section('content')
 <div class="row">
 	<!--start left sidebar-->
-	@include('pages.user.user_menu')
+	@widget('UserMenu')
 	<!--end left sidebar-->
 	<div class="col-md-6">
 		<main class="content">
