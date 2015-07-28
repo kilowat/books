@@ -104,5 +104,9 @@
 			};
 			socket.emit('send',sendMsg);
 		  }
+		  $(document).ready(function(){
+			 var pageUserId = {{$userPage->id}};
+			socket.emit('msgConfirm',{'pageUserId':pageUserId,'curUser':_app.getUser()});
+		  });
 		</script>
 @endsection

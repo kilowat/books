@@ -39,7 +39,14 @@ io.on('connection', function (socket) {
 	
 	socket.on('messageTake',function(userId){
 		console.log('user'+userId+'take message');
-	});	  
+	});
+	
+	socket.on('msgConfirm',function(data){
+	
+		var userMessageModel = require('./model/UserMessage');
+		userMessageModel.messageConfirm(data);
+	});
+	
 	 socket.on('disconnect',function(){
 		// console.log(io.sockets.adapter.rooms);
 		 var userInRoom = io.sockets.adapter.rooms[socket.user_id];

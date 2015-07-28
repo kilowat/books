@@ -16,4 +16,9 @@ class UserMessage extends Model
     	return $this->belongsTo('\App\Model\User','user_send_id','id');
     	 
     }
+    /*
+    public function getMessageTypeAttribute($value){
+    	return $res = ($value=='in')?'Входящее':'Исходящее';
+    }
+    */
 }

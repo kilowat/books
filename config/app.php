@@ -139,6 +139,7 @@ return [
     	Illuminate\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
     	Arrilot\Widgets\ServiceProvider::class,
+    	Barryvdh\Debugbar\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -199,6 +200,7 @@ return [
         'Image'     => Intervention\Image\Facades\Image::class,
     	'Widget'    => Arrilot\Widgets\Facade::class,
     	'AsyncWidget'=> Arrilot\Widgets\AsyncFacade::class,
+    	'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 
