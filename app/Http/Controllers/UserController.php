@@ -39,6 +39,7 @@ class UserController extends Controller
 	}
 	
 	public function usersList(User $users){
+		$users = $users->all();
 		return view('pages.user.list',compact('users'));
 	}
 }

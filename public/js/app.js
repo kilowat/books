@@ -8,6 +8,13 @@ Bapp.prototype.setUser = function(user){
 Bapp.prototype.getUser = function(){
 	return this._user;
 }
+Bapp.prototype.getAvatar = function(size,userId,fileName){
+	
+	if(fileName == '')
+		return '/images/avatar_'+size+'_default.png';
+	return '/upload/users/'+userId+'/avatar/'+size+'_'+fileName;
+	
+}
 
 var _app = new Bapp();
 

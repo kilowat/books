@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('content')
-		<div class="row">
+		<div class="row profile-page">
 			<!--start left sidebar-->
 			@widget('UserMenu')
 			<!--end left sidebar-->
@@ -21,23 +21,6 @@
 									<div class="user-status-online">offline</div>
 									<span>{{$user->name}}</span>
 								</div>
-								<span>Основное</span>
-								<ul>
-									<li>Возраст: Неуказан</li>
-									<li>Город: Детройт</li>
-									<li>Рейтинг: 100</li>
-									<li>Читатель/Писатель</li>
-								</ul>
-								<span>Любимые жанры</span>
-								<ul>
-									<li>Комедия</li>
-									<li>Хорор</li>
-								</ul>
-								<span>Любимые Авторы</span>
-								<ul>
-									<li>Кинг</li>
-									<li>Дарья Данцова ;)</li>
-								</ul>
 							</div>
 						</div>
 					</div>

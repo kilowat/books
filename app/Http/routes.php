@@ -62,5 +62,10 @@ Route::get('user/profile/publication/show',[
 		'middleware'=>'auth',
 		'uses'=>'PublicationController@show'
 ]);
+Route::get('user/profile/publication/add',[
+		'as'=>'user.publication.add',
+		'middleware'=>'auth',
+		'uses'=>'PublicationController@add'
+]);
 /**************************/
 Route::controller('auth', 'Auth\AuthController');

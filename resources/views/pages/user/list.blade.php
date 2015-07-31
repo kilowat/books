@@ -4,7 +4,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="users-list-wrapper">
-			@foreach($users->all() as $user)
+			@foreach($users as $user)
 				@if($i === 0|| $i%$count === 0)
 				<div class="row">
 				@endif

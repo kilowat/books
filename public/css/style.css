@@ -102,6 +102,7 @@ nav{
     margin:0px;
 	padding-left:10px;
 	list-style:none;
+	overflow-x: hidden;
 }
 .messages-list > li {
     border: 1px solid #ccc;
@@ -111,11 +112,18 @@ nav{
     padding: 10px;
 }
 .message-in{
-	margin-left:10px;
+
 	background: #f3f3f3 none repeat scroll 0 0;
 }
 .message-out{
 	 background: #f3ede1 none repeat scroll 0 0;
+}
+.message-send-input #msg{
+	width:100%
+}
+#send {
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 /***end seng message list ****/
 
@@ -126,13 +134,10 @@ nav{
 /*****end users******/
 
 /******user list page********/
-.user-item{
-  	border: 1px solid #ccc;
-    height: 200px;
+.profile-page .user-item{
     list-style: outside none none;
     margin: 0;
-    padding: 10px;
-    vertical-align: middle;
+ 
 }
 .user-item li{
 	text-align:center;
@@ -152,10 +157,21 @@ nav{
     list-style: outside none none;
     margin: 0;
     padding: 0;
-    text-align: center;
+
 }
 .confirmed-0 {
     border: 1px solid blue;
+}
+.avatar-img-wrapper {
+    height: 100px;
+    width: 100px;
+}
+.user-messages-list ul li {
+    display: inline-block;
+}
+.current-user-avatar {
+    float: left;
+    text-align: center;
 }
 /*************************************************/
 footer {

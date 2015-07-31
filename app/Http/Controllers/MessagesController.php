@@ -10,22 +10,21 @@ use App\Model\User;
 
 class MessagesController extends Controller
 {
+	public $current_user;
+	
+	public function __construct(){
+		$this->current_user = \Auth::user();
+	}
 	
 	public function show(User $user,UserMessage $userMessage){
-		$msgList = $userMessage->with('userSend','user')
-				->where('user_id','=',\Auth::user()->id)
-				->orderBy('confirmed','asc')
-				->get();
-		
-		return view('pages.messages.show',compact('msgList'));
+		$msgList = $userMessage->lastMessages($this->current_user->id);
+		return view('pages.messages.show',compact('msgList'))->with(['current_user'=>$this->current_user]);
 	}
 	
 	
 	public function send($id,UserMessage $userMessage,User $user){
-		$curUserId = \Auth::user()->id;
-		
+		$curUserId = $this->current_user->id;
 		$userPage = $user->find($id);
-		
 		$userMsg = $userMessage
 					->where('user_id','=',$curUserId)
 					->where('user_send_id','=',$id)

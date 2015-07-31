@@ -33,6 +33,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     protected $hidden = ['password', 'remember_token'];
 
+    
+    
 	public function avatarNormal(User $user){
 		return !empty($user->avatar) ? '/upload/users/'.$user->id.'/avatar/normal_'.$user->avatar : '/images/avatar_normal_default.png';
 	}
