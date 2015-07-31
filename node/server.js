@@ -4,7 +4,7 @@ var fs = require('fs');
 var Redis = require('ioredis');
 var redis = new Redis();
 var activeUsers = {};
-
+var dateFormat = require('dateformat');
 app.listen(81);
 
 io.on('connection', function (socket) {
@@ -24,7 +24,9 @@ io.on('connection', function (socket) {
 	socket.on('send', function (data) {
 
 		var userMessageModel = require('./model/UserMessage');
-
+		var dateF = dateFormat(new Date(), "dd-mm-yyyy H:MM:ss");
+		data.incom.dateF = dateF;
+		data.out.dateF = dateF;
 		socket.to('id_'+data.incom.user.id).emit('in',data.incom);
 		
 		socket.to('id_'+data.incom.user.id).emit('inMsgSignal',data.incom);
