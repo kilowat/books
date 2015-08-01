@@ -6,7 +6,7 @@
 	<!--end left sidebar-->
 	<div class="col-md-6">
 		<main class="content">
-		<a href="">Добавить</a>
+		<a href="{{route('user.publication.create')}}">Добавить</a>
 		</main>
 	</div>
 	<div class="push"></div>

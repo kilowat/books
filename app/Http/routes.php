@@ -62,10 +62,10 @@ Route::get('user/profile/publication/show',[
 		'middleware'=>'auth',
 		'uses'=>'PublicationController@show'
 ]);
-Route::get('user/profile/publication/add',[
-		'as'=>'user.publication.add',
+Route::get('user/profile/publication/create',[
+		'as'=>'user.publication.create',
 		'middleware'=>'auth',
-		'uses'=>'PublicationController@add'
+		'uses'=>'PublicationController@create'
 ]);
 /**************************/
 Route::controller('auth', 'Auth\AuthController');

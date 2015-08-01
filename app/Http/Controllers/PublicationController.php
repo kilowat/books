@@ -13,4 +13,8 @@ class PublicationController extends Controller
     	
     	return view('pages.publications.show');
 	}
+	
+	public function create(){
+		return view('pages.publications.create');
+	}
 }
