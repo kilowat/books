@@ -140,6 +140,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
     	Arrilot\Widgets\ServiceProvider::class,
     	Barryvdh\Debugbar\ServiceProvider::class,
+    	Menu\MenuServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -201,6 +202,7 @@ return [
     	'Widget'    => Arrilot\Widgets\Facade::class,
     	'AsyncWidget'=> Arrilot\Widgets\AsyncFacade::class,
     	'Debugbar' => Barryvdh\Debugbar\Facade::class,
+    	'Menu' 	   => Menu\Menu::class,
 
     ],
 

@@ -15,6 +15,8 @@ class AppServiceProvider extends ServiceProvider
     {
     	/*include html macros*/
         include(app_path('Lib'.DIRECTORY_SEPARATOR.'htmlMacro.php'));
+        
+        include(app_path('Lib'.DIRECTORY_SEPARATOR.'menu.php'));
     }
 
     /**

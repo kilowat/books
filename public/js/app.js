@@ -20,7 +20,6 @@ Bapp.prototype.currentMenu = function(items){
 	for (var i = 0;items.length>i;i++){
 		$('#'+items[i]+' li').each(function(key,value){
 			$(value).removeClass('active');
-			
 			if($(value).children()[0].href==window.location.href)
 				$(value).addClass('active');
 			
