@@ -55,17 +55,19 @@ Route::get('user/profile/{id}/messages/send',[
 		'uses'=>'MessagesController@send'
 ]);
 
-
-/*****user publications********/
-Route::get('user/profile/publication/show',[
-		'as'=>'user.publication.show',
+/*
+/*****user publications********
+Route::get('user/profile/publication/index',[
+		'as'=>'user.publication.index',
 		'middleware'=>'auth',
-		'uses'=>'PublicationController@show'
+		'uses'=>'PublicationController@index'
 ]);
 Route::get('user/profile/publication/create',[
 		'as'=>'user.publication.create',
 		'middleware'=>'auth',
 		'uses'=>'PublicationController@create'
 ]);
-/**************************/
+**************************/
+Route::resource('user/publication','PublicationController');
+
 Route::controller('auth', 'Auth\AuthController');

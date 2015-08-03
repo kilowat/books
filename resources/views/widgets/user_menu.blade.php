@@ -5,7 +5,7 @@
 				<a href="{{route('user.messages.show')}}">Мои сообщения</a>
 			</li>
 		 	<li class="list-group-item">
-				<a href="{{route('user.publication.show')}}">Мои публикации</a>
+				<a href="{{route('user.publication.index')}}">Мои публикации</a>
 			</li>
 			<li class="list-group-item">
 				<span class="badge">14</span>
