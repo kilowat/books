@@ -8,7 +8,7 @@ use Image;
 use App\Http\Requests\UserProfileEditRequest;
 use App\Model\User;
 use Storage;
-class SaveUserData extends Job implements SelfHandling
+class SaveUserDataImage extends Job implements SelfHandling
 {
 	
     /**
@@ -19,17 +19,19 @@ class SaveUserData extends Job implements SelfHandling
      */
 	protected $request;
 	protected $user;
-
+	protected $dir;
 	
 	protected $size = [
 		'normal'=>['width'=>300,'heigth'=>300],
 		'mini'=>['width'=>100,'heigth'=>100],
 	];
 	
-    public function __construct(User $user,UserProfileEditRequest $request)
+    public function __construct(User $user,$request_file,$dir)
     {
-        $this->request = $request;
+        $this->request_file = $request_file;
         $this->user = $user;
+     	$this->dir = str_replace('.',DIRECTORY_SEPARATOR,$dir);
+      
     }
 
     /**
@@ -39,24 +41,19 @@ class SaveUserData extends Job implements SelfHandling
      */
     public function handle()
     {
+    	
 		define('DS', DIRECTORY_SEPARATOR);
-		$base_path = public_path('upload'.DS.'users'.DS.$this->user->id.DS.'avatar'.DS);
+		$base_path = public_path('upload'.DS.'users'.DS.$this->user->id.DS.$this->dir.DS);
 		$file_name = md5(str_random(20));
-		$file_ex = $this->request->file('avatar')->getClientOriginalExtension();
-		$avatar_name = $file_name.'.'.$file_ex;
-
-		$input = $this->request->all();
-		$input['avatar'] = $avatar_name;
-		$this->user->update($input);
-		$this->user->save();
-		
+		$file_ex = $this->request_file->getClientOriginalExtension();
+		$file_name_new = $file_name.'.'.$file_ex;	
 
 		$disk = Storage::disk('users');
-		if($disk->exists($this->user->id.DS.'avatar'));
-		$disk->deleteDirectory($this->user->id.DS.'avatar');
+		//if($disk->exists($this->user->id.DS.$this->dir));
+		//$disk->deleteDirectory($this->user->id.DS.$this->dir);
 	
 	
-		$this->request->file('avatar')->move($base_path, 'origin_'.$file_name.'.'.$file_ex);
+		$this->request_file->move($base_path, 'origin_'.$file_name.'.'.$file_ex);
 		//save image in origin size
 		$img = Image::make($base_path.'origin_'.$file_name.'.'.$file_ex);
 		$img->save($base_path.'origin_'.$file_name.'.'.$file_ex, 60);
@@ -67,6 +64,8 @@ class SaveUserData extends Job implements SelfHandling
 			});
 			$img->save($base_path.$key.'_'.$file_name.'.'.$file_ex, 60);
 		}
+		
+		return $file_name_new;
 
     }
 }

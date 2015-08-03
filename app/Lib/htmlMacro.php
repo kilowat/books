@@ -1,11 +1,11 @@
 <?php
 	Html::macro('avatar', function($size='mini',$user_id,$user_avatar)
-	{	$html = '';
-		switch($size){
-			case 'mini': return !empty($user_avatar) ? '/upload/users/'.$user_id.'/avatar/mini_'.$user_avatar : '/images/avatar_mini_default.png';break;
-			case 'normal': return !empty($user_avatar) ? '/upload/users/'.$user_id.'/avatar/normal_'.$user_avatar : '/images/avatar_normal_default.png';break;
-		}
-   		
+	{	
+		/*
+		 * sizes: normal,mini
+		 * */
+			return !empty($user_avatar) ? '/upload/users/'.$user_id.'/avatar/'.$size.'_'.$user_avatar : '/images/avatar_'.$size.'_default.png';
+		
 	});
 	/******************************************/
 
@@ -31,8 +31,6 @@
 		foreach($data as $item) {
 			$html.= '<tr>';
 			foreach($head as $key2=>$value2){
-				if(empty($item->$key2))
-					continue;
 	
 				$html.='<th>'.$item->$key2.'</th>';
 			}

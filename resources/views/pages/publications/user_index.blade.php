@@ -10,8 +10,9 @@
 		
 			{!!Html::divTablePanel([
 				'name'=>'название',
-				'description'=>'описание',
-				'created_at'=>'Добавлен',
+				'created_at'=>'Дата создания',
+				'active'=>'Активность',
+				'rang'=>'Рейтинг',
 				],$publications,'user.publication')!!}
 
 		{!!$publications->render()!!}

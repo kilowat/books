@@ -17,6 +17,7 @@ class UserController extends Controller
 
 	
 	function __construct(){
+		
 		$this->userDisk = Storage::disk('users');
 
 	}
@@ -29,16 +30,24 @@ class UserController extends Controller
 	}
 
 	public function edit(){
+		
 		return view('pages.user.edit')->with(['user'=>Auth::user()]);
 	}
 	
 	public function store(User $user,UserProfileEditRequest $request){
-		$this->dispatch(new \App\Jobs\SaveUserData(Auth::user(),$request));
+		
+		$file_name = $this->dispatch(new \App\Jobs\SaveUserDataImage(Auth::user(),$request->file('avatar'),'avatar'));
+		$input = $request->all();
+		$input['avatar'] = $file_name;
+		Auth::user()->update($input);
+		Auth::user()->save();
+		
 		return redirect()->back();
 
 	}
 	
 	public function usersList(User $users){
+		
 		$users = $users->all();
 		return view('pages.user.list',compact('users'));
 	}

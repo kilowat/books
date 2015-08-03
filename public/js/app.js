@@ -15,7 +15,18 @@ Bapp.prototype.getAvatar = function(size,userId,fileName){
 	return '/upload/users/'+userId+'/avatar/'+size+'_'+fileName;
 	
 }
-
+Bapp.prototype.currentMenu = function(items){
+	
+	for (var i = 0;items.length>i;i++){
+		$('#'+items[i]+' li').each(function(key,value){
+			$(value).removeClass('active');
+			
+			if($(value).children()[0].href==window.location.href)
+				$(value).addClass('active');
+			
+		});
+	}
+}
 var _app = new Bapp();
 
 /******sockets listeners********/
@@ -41,7 +52,9 @@ var _app = new Bapp();
 	  	}
 	  });
 	
-
+$(document).ready(function(){
+	_app.currentMenu(['top-menu'])
+});
 
 
 

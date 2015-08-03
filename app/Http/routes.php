@@ -68,6 +68,16 @@ Route::get('user/profile/publication/create',[
 		'uses'=>'PublicationController@create'
 ]);
 **************************/
+Route::get('publication',[
+		'as'=>'publication.all',
+		'uses'=>'PublicationController@all'
+]);
 Route::resource('user/publication','PublicationController');
+
+Route::bind('publication',function($id){
+	return App\Model\Publication::find($id);
+});
+
+
 
 Route::controller('auth', 'Auth\AuthController');

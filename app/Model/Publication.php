@@ -13,7 +13,11 @@ class Publication extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'description','category_id','user_id'];
+    protected $fillable = ['name', 'description','category_id','user_id','image'];
     
     protected $hidden = ['_token'];
+    
+    public function getCreatedAtAttribute($value){
+    	return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d-m-Y H:i:s');
+    }
 }

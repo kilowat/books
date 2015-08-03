@@ -20,8 +20,12 @@ class PublicationController extends Controller
     public function index(Publication $publications)
     {
     	
-       return view('pages.publications.index')
+       return view('pages.publications.user_index')
        				->with(['publications'=>$publications->paginate(15)]);
+    }
+    
+    public function all(){
+    	return view('pages.publications.all');
     }
 
     /**
@@ -42,9 +46,13 @@ class PublicationController extends Controller
      */
     public function store(PublicationRequest $request)
     {	
-    	$request = $request->all();
-    	$request['user_id'] = \Auth::user()->id;
     	
+    	$curUser = \Auth::user();
+    	$file_name = $this->dispatch(new \App\Jobs\SaveUserDataImage($curUser,$request->file('image'),'files'));
+    	$request = $request->all();
+    	$request['user_id'] = $curUser->id;
+    	$request['image'] = $file_name;
+  
         Publication::create($request);
   
         return redirect()->back();
@@ -56,9 +64,9 @@ class PublicationController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show(Publication $publication)
     {
-        //
+       return view('pages.publications.show',compact('publication'));
     }
 
     /**
@@ -67,9 +75,9 @@ class PublicationController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function edit(Publication $publication)
     {
-        //
+    	return view('pages.publications.edit',compact('publication'));
     }
 
     /**
@@ -78,9 +86,12 @@ class PublicationController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(PublicationRequest $request,Publication $publication)
     {
-        //
+    	$publication->update($request->all());
+        $publication->save();
+        
+        return redirect()->back();
     }
 
     /**

@@ -7,12 +7,12 @@
 	<!--end left sidebar-->
 	<div class="col-md-6">
 		<main class="content">
-			{!!Form::open(['method'=>'post','action'=>'PublicationController@store','enctype'=>'multipart/form-data'])!!}
+			{!!Form::Model($publication,['method'=>'PUT','route'=>['user.publication.update',$publication->id]])!!}
 				<div class="row input-list">
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="name">Название</label>
 						<div class="col-md-8">
-							<input type="text" class="form-control" name="name" id="name">
+							{!!Form::text('name',null,['class'=>'form-control','id'=>'name'])!!}
 						</div>
 					</div>
 				</div>
@@ -20,7 +20,7 @@
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="name">Описание</label>
 						<div class="col-md-8">
-							<input type="text" class="form-control" name="description" id="description">
+							{!!Form::text('description',null,['class'=>'form-control','id'=>'description'])!!}
 						</div>
 					</div>
 				</div>
@@ -28,15 +28,7 @@
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="category_id">Категория</label>
 						<div class="col-md-8">
-							{!!Form::select('category_id',$categories)!!}
-						</div>
-					</div>
-				</div>
-				<div class="row input-list">	
-					<div class="form-group">
-						<label class="col-md-4 control-label" for="category_id">Обложка</label>
-						<div class="col-md-8">
-							{!!Form::file('image')!!}
+							
 						</div>
 					</div>
 				</div>

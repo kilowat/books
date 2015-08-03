@@ -23,7 +23,7 @@ class CreatePublicationsTable extends Migration
     		$table->integer('rang');
     		$table->integer('see_count');
     		$table->text('description');
-    		$table->boolean('active');
+    		$table->boolean('active')->default(1);
     		$table->timestamps();
     	});
     }
