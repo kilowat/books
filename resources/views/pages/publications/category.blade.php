@@ -18,8 +18,8 @@
 								<span>Автор:{{$publication->user->name}}</span>
 								<span>Рейтинг:{{$publication->rang}}</span>
 							</div>
-							<a href="{{route('publication.detail',[$publication->category->slug,$publication->id])}}">{{$publication->name}}</a>
-							<a href="{{route('publication.detail',[$publication->category->slug,$publication->id])}}" class="pub-image-list">
+							<a href="{{route('publication.detail',[$category->slug,$publication->id])}}">{{$publication->name}}</a>
+							<a href="{{route('publication.detail',[$category->slug,$publication->id])}}" class="pub-image-list">
 								<img src="{{Html::showUserImage('normal',Auth::user()->id,'files',$publication->image)}}">
 							</a>
 							<div class="pub-description">

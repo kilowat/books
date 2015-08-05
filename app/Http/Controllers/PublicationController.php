@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Publication;
 use App\Model\Category;
 use App\Http\Requests\PublicationRequest;
+use App\Lib\Menu;
 
 class PublicationController extends Controller
 {
@@ -17,15 +18,37 @@ class PublicationController extends Controller
      *
      * @return Response
      */
+	public function __construct()
+	{
+		Menu::add(['top']);
+	}
+	
     public function index(Publication $publications)
     {
-    	
        return view('pages.publications.user_index')
        				->with(['publications'=>$publications->paginate(15)]);
     }
     
-    public function all(){
-    	return view('pages.publications.all');
+    public function category($slug,Category $categories,Publication $publication)
+    {
+    	$category = $categories->where('slug','=',$slug)
+    				  ->first();
+    	
+    	$publications = $publication->where('category_id','=',$category->id)
+    						->with('user')
+    						->paginate(6);
+ 
+    	return view('pages.publications.category',compact('publications','category'));
+    }
+    
+    public function all(Publication $publication)
+    {
+    	$publications = $publication
+    					->with('user')
+    					->with('category')
+    					->paginate(6);
+
+    	return view('pages.publications.all',compact('publications'));
     }
 
     /**
@@ -33,8 +56,8 @@ class PublicationController extends Controller
      *
      * @return Response
      */
-	public function create(Category $categories){
-		
+	public function create(Category $categories)
+	{
 		return view('pages.publications.create')
 					->with(['categories'=>$categories->lists('name','id')]);
 	}
@@ -46,7 +69,6 @@ class PublicationController extends Controller
      */
     public function store(PublicationRequest $request)
     {	
-    	
     	$curUser = \Auth::user();
     	$file_name = $this->dispatch(new \App\Jobs\SaveUserDataImage($curUser,$request->file('image'),'files'));
     	$request = $request->all();
@@ -58,6 +80,12 @@ class PublicationController extends Controller
         return redirect()->back();
     }
 
+    public function detail($category,Publication $publication)
+    {
+    	$publication->user_name = $publication->user->name;
+    	return view('pages.publications.detail',compact('publication'));
+    }
+    
     /**
      * Display the specified resource.
      *

@@ -141,13 +141,14 @@ return [
     	Arrilot\Widgets\ServiceProvider::class,
     	Barryvdh\Debugbar\ServiceProvider::class,
     	Menu\MenuServiceProvider::class,
-
+		
         /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+    	App\Providers\IncServiceProvider::class,
 
     ],
 

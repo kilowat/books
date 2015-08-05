@@ -13,10 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-    	/*include html macros*/
-        include(app_path('Lib'.DIRECTORY_SEPARATOR.'htmlMacro.php'));
-        
-        include(app_path('Lib'.DIRECTORY_SEPARATOR.'menu.php'));
+
     }
 
     /**

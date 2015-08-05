@@ -6,7 +6,7 @@ class CategorySeeder extends Seeder{
 	public function run(){
 		
 		$categories = [
-					['name'=>'Деловая литература','slug'=>'detectives&Thrillers'],
+					['name'=>'Деловая литература','slug'=>'detectivesThrillers'],
 					['name'=>'Детское','slug'=>'for_childern'],
 					['name'=>'Документальная литература','slug'=>'nonfiction'],
 					['name'=>'Компьютеры и Интернет','slug'=>'computers_and_internet'],

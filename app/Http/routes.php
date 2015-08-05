@@ -68,11 +68,28 @@ Route::get('user/profile/publication/create',[
 		'uses'=>'PublicationController@create'
 ]);
 **************************/
+
+
+Route::get('publication/category/{category}/{publication}',[
+		'as'=>'publication.detail',
+		'uses'=>'PublicationController@detail'
+])->where(['publication' => '[0-9]+', 'category' => '[А-яA-z0-9]+']);
+
+Route::get('publication/category/{category}',[
+		'as'=>'publication.category',
+		'uses'=>'PublicationController@category'
+]);
+
 Route::get('publication',[
 		'as'=>'publication.all',
 		'uses'=>'PublicationController@all'
 ]);
+
+
+
 Route::resource('user/publication','PublicationController');
+
+
 
 Route::bind('publication',function($id){
 	return App\Model\Publication::find($id);
