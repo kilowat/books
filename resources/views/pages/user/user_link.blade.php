@@ -7,7 +7,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Войти/зарегистрироваться <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="{{action('Auth\AuthController@getLogin')}}">Авторизация</a></li>
-            <li><a href="{{action('Auth\AuthController@getRegister')}}">Зарегистрироваться</a></li>s
+            <li><a href="{{action('Auth\AuthController@getRegister')}}">Зарегистрироваться</a></li>
           </ul>
         </li>
 	</ul>

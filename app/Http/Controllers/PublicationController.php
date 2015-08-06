@@ -83,7 +83,9 @@ class PublicationController extends Controller
     public function detail($category,Publication $publication)
     {
     	$publication->user_name = $publication->user->name;
-    	return view('pages.publications.detail',compact('publication'));
+    	$comments = $publication->comments()->with('user')->get();
+    	
+    	return view('pages.publications.detail',compact('publication','comments'));
     }
     
     /**

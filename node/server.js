@@ -50,7 +50,9 @@ io.on('connection', function (socket) {
 	});
 	
 	socket.on('commentAdd',function(data){
-		console.log(data);
+		var commentModel = require('./model/Comment');
+		data.dateF = dateFormat(new Date(), "dd-mm-yyyy H:MM:ss");
+		commentModel.add(data);
 		io.emit('commentAdd',data);
 	});
 	

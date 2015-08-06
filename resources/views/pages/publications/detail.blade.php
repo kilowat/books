@@ -35,19 +35,21 @@
 						<textarea id="comment-message"></textarea>
 						<button id="comment-add">Добавить</button>
 					</div>
-					<div class="comments-list">
-						<br><b>Список комментариев</b></br>
+					<br><b>Список комментариев</b></br>
+					<div id="comments-list">
+						@foreach($comments as $comment)
 						<ul class="row">
 							<li class="col-md-12">
-								Комментарий1
+								{{$comment->user->name}}
 							</li>
-						</ul>
-						
-						<ul class="row">
 							<li class="col-md-12">
-								Комментарий2
+								{{$comment->created_at}}
+							</li>
+							<li class="col-md-12">
+								{{$comment->message}}
 							</li>
 						</ul>
+						@endforeach
 					</div>
 				</div>
 			</div>
@@ -56,9 +58,25 @@
 	<div class="push"></div>
 </div>
 <script>
-var commentMessage = $('#comment-message').val();
+
 $('#comment-add').click(function(){
-	socket.emit('commentAdd',{user:_app.getUser(),message:commentMessage})
+	var commentMessage = $('#comment-message').val();
+	var pub_id = {{$publication->id}};
+	socket.emit('commentAdd',{user:_app.getUser(),message:commentMessage,publication_id:pub_id});
+});
+socket.on('commentAdd',function(data){
+	var commentList = $('#comments-list');
+	var html = '';
+		html+='	<ul class="row">';
+			html+='<li class="col-md-12">';
+			html+='<li>'+data.user.name+'</li>';
+			html+='<li>'+data.dateF+'</li>';
+			html+=data.message;
+			html+='</li>';
+		html+='</ul>';
+	commentList.append(html);
+	
+
 });
 </script>
 @endsection
