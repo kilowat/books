@@ -49,6 +49,11 @@ io.on('connection', function (socket) {
 		userMessageModel.messageConfirm(data);
 	});
 	
+	socket.on('commentAdd',function(data){
+		console.log(data);
+		io.emit('commentAdd',data);
+	});
+	
 	 socket.on('disconnect',function(){
 		// console.log(io.sockets.adapter.rooms);
 		 var userInRoom = io.sockets.adapter.rooms[socket.user_id];

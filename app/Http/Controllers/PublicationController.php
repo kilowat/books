@@ -37,7 +37,7 @@ class PublicationController extends Controller
     	$publications = $publication->where('category_id','=',$category->id)
     						->with('user')
     						->paginate(6);
- 
+ 		
     	return view('pages.publications.category',compact('publications','category'));
     }
     
