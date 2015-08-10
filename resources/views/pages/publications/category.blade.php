@@ -20,7 +20,7 @@
 							</div>
 							<a href="{{route('publication.detail',[$category->slug,$publication->id])}}">{{$publication->name}}</a>
 							<a href="{{route('publication.detail',[$category->slug,$publication->id])}}" class="pub-image-list">
-								<img src="{{Html::showUserImage('normal',Auth::user()->id,'files',$publication->image)}}">
+								<img src="{{Html::showUserImage('normal',$publication->user->id,'files',$publication->image)}}">
 							</a>
 							<div class="pub-description">
 								{{str_limit($publication->description,250,'...')}}

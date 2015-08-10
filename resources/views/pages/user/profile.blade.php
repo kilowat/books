@@ -10,7 +10,7 @@
 						<!--start ava-->
 						<div class="col-md-3">
 							    <div class="thumbnail">
-									<img src="{{$user->avatarNormal($user)}}" alt="...">
+									<img src="{{Html::avatar('normal',$user->id,$user->avatar)}}" alt="...">
 								</div>
 								<a href="{{route('user.messages.send',['id'=>$user->id])}}">Отпавить сообщение пользователю</a>
 						</div>

@@ -1,5 +1,5 @@
 <?php
-	Html::macro('avatar', function($size='mini',$user_id,$user_avatar)
+	Html::macro('avatar', function($size='mini',$user_id,$user_avatar=null)
 	{	
 		/*
 		 * sizes: normal,mini

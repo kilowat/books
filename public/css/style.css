@@ -91,7 +91,38 @@ body{
     text-align: center;
 	margin-bottom: 15px;
 }
-
+.col-md-12.comment-section {
+    margin-top: 30px;
+}
+.comment-items{
+	 border-bottom: 1px solid #ccc;
+    list-style: outside none none;
+    margin: 0 0 10px;
+    padding: 0 0 10px;
+}
+.comment-section-head{
+	text-align:center;
+}
+.comment-name, .comment-data {
+    color: #878787;
+    font-size: 0.9em;
+}
+.col-md-12.comment-info {
+    margin-bottom: 5px;
+}
+#comment-message {
+    height: 100px;
+    width: 100%;
+}
+#comment-add {
+    margin-top: 10px;
+}
+.comments-form {
+    background: #f6f6f6 none repeat scroll 0 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+}
 /********end publish detail***************/
 nav{
 	height:50px;
@@ -194,6 +225,7 @@ nav{
 	display:block;
 }
 /*****end publication/category******/
+
 footer {
 	background: #f5f5f5 none repeat scroll 0 0;
     border-top: 1px solid #ccc;

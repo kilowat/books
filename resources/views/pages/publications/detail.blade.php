@@ -30,20 +30,25 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-12">
-					<div class="comments-form">
-						<textarea id="comment-message"></textarea>
-						<button id="comment-add">Добавить</button>
+				<div class="col-md-12 comment-section">
+					<div class="row comment-section-head">
+						<b>Комментарии</b>
 					</div>
-					<br><b>Список комментариев</b></br>
+					@if(Auth::user())
+						<div class="comments-form">
+							<textarea id="comment-message" class="form-control"></textarea>
+							<button id="comment-add" class="btn btn-default">Добавить</button>
+						</div>
+					@else
+						<div class="alert alert-danger">Для того чтобы оставить комментарий зарегестрируйтесь</div>
+					@endif
+					
 					<div id="comments-list">
 						@foreach($comments as $comment)
-						<ul class="row">
-							<li class="col-md-12">
-								{{$comment->user->name}}
-							</li>
-							<li class="col-md-12">
-								{{$comment->created_at}}
+						<ul class="row comment-items">
+							<li class="col-md-12 comment-info">
+								<span class="comment-name">{{$comment->user->name}}</span>
+								<span class="comment-data">{{$comment->created_at}}</span>
 							</li>
 							<li class="col-md-12">
 								{{$comment->message}}
@@ -61,16 +66,19 @@
 
 $('#comment-add').click(function(){
 	var commentMessage = $('#comment-message').val();
+	if(commentMessage.length<3){
+		$('.comment-section').prepend('<div id="comment-error" class="alert alert-danger">Введите сообщение<div>');
+		return
+	}
 	var pub_id = {{$publication->id}};
 	socket.emit('commentAdd',{user:_app.getUser(),message:commentMessage,publication_id:pub_id});
 });
 socket.on('commentAdd',function(data){
 	var commentList = $('#comments-list');
 	var html = '';
-		html+='	<ul class="row">';
-			html+='<li class="col-md-12">';
-			html+='<li>'+data.user.name+'</li>';
-			html+='<li>'+data.dateF+'</li>';
+		html+='	<ul class="row comment-items">';
+			html+='<li class="col-md-12 comment-info">';
+			html+='<li><span class="comment-name">'+data.user.name+'</span><span class="comment-data">'+data.dateF+'</span></li>';
 			html+=data.message;
 			html+='</li>';
 		html+='</ul>';
