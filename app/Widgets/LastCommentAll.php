@@ -28,7 +28,8 @@ class LastCommentAll extends AbstractWidget
     {
          $comments= \DB::table('comments')
             ->select(
-                'users.name as user_name', 
+                'users.name as user_name',
+                'users.id as user_id', 
                 'categories.slug as category_slug', 
                 'comments.message as comment_message', 
                 'comments.created_at as comment_created_at',

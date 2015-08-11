@@ -2,7 +2,7 @@
 	@foreach($comments as $comment)
 		<ul>
 			<li class="comment-info">
-				<span class="comment-name">{{$comment->user_name}}</span>
+				<a class="comment-name" href="{{route('user.profile',['id'=>$comment->user_id])}}">{{$comment->user_name}}</a>
 				<span class="comment-data">{{$comment->comment_created_at}}</span>
 			</li>
 			<li>
