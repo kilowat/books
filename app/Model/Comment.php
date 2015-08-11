@@ -10,4 +10,9 @@ class Comment extends Model
     	
     	return $this->belongsTo('\App\Model\User','user_id','id'); 
     }
+
+    public function publication(){
+
+    	return $this->belongsTo('\App\Model\Publication','publication_id','id');
+    }
 }

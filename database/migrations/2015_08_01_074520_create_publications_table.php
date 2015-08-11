@@ -18,8 +18,8 @@ class CreatePublicationsTable extends Migration
     		$table->integer('category_id')->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
     		$table->string('name');
     		$table->string('image');
-    		$table->integer('rang');
-    		$table->integer('see_count');
+    		$table->integer('rang')->default(0);
+    		$table->integer('see_count')->default(0);
     		$table->text('description');
     		$table->boolean('active')->default(1);
     		$table->timestamps();
