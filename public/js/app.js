@@ -8,7 +8,24 @@ Bapp.prototype.setUser = function(user){
 Bapp.prototype.getUser = function(){
 	return this._user;
 }
-
+Bapp.prototype.getAvatar = function(size,userId,fileName){
+	
+	if(fileName == '')
+		return '/images/avatar_'+size+'_default.png';
+	return '/upload/users/'+userId+'/avatar/'+size+'_'+fileName;
+	
+}
+Bapp.prototype.currentMenu = function(items){
+	
+	for (var i = 0;items.length>i;i++){
+		$('#'+items[i]+' li').each(function(key,value){
+			$(value).removeClass('active');
+			if($(value).children()[0].href==window.location.href)
+				$(value).addClass('active');
+			
+		});
+	}
+}
 var _app = new Bapp();
 
 /******sockets listeners********/
@@ -34,7 +51,9 @@ var _app = new Bapp();
 	  	}
 	  });
 	
-
+$(document).ready(function(){
+	_app.currentMenu(['top-menu'])
+});
 
 
 

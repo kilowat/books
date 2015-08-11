@@ -49,7 +49,7 @@ return [
         ],
         'users' => [
             'driver' => 'local',
-            'root'   => storage_path('app/users'),
+            'root'   => public_path('upload/users'),
         ],
 
         'ftp' => [

@@ -48,10 +48,10 @@
 		<div class="navbar-text">Status:
 			<span id="signal-status"></span>
 		</div>
-		  <ul class="nav navbar-nav">
+		  <ul class="nav navbar-nav" id="top-menu">
 			<li class="active"><a href="/">Главная <span class="sr-only">Главная</span></a></li>
 			<li><a href="{{action('UserController@usersList')}}">Пользователи</a></li>
-      <li><a href="">Библиотека</a></li>
+      <li><a href="{{action('PublicationController@all')}}">Библиотека</a></li>
 			<li><a href="#">Новости</a></li>
 			<li><a href="#">Статьи</a></li>
 		  </ul>

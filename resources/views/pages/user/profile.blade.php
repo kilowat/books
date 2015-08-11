@@ -1,8 +1,8 @@
 @extends('layout.master')
 @section('content')
-		<div class="row">
+		<div class="row profile-page">
 			<!--start left sidebar-->
-			@include('pages.user.user_menu')
+			@widget('UserMenu')
 			<!--end left sidebar-->
 			<div class="col-md-9">
 				<main class="content">
@@ -10,9 +10,9 @@
 						<!--start ava-->
 						<div class="col-md-3">
 							    <div class="thumbnail">
-									<img src="{{$user->avatar}}" alt="...">
+									<img src="{{Html::avatar('normal',$user->id,$user->avatar)}}" alt="...">
 								</div>
-							
+								<a href="{{route('user.messages.send',['id'=>$user->id])}}">Отпавить сообщение пользователю</a>
 						</div>
 						<!--end ava-->
 						<div class="col-md-9">
@@ -21,23 +21,6 @@
 									<div class="user-status-online">offline</div>
 									<span>{{$user->name}}</span>
 								</div>
-								<span>Основное</span>
-								<ul>
-									<li>Возраст: Неуказан</li>
-									<li>Город: Детройт</li>
-									<li>Рейтинг: 100</li>
-									<li>Читатель/Писатель</li>
-								</ul>
-								<span>Любимые жанры</span>
-								<ul>
-									<li>Комедия</li>
-									<li>Хорор</li>
-								</ul>
-								<span>Любимые Авторы</span>
-								<ul>
-									<li>Кинг</li>
-									<li>Дарья Данцова ;)</li>
-								</ul>
 							</div>
 						</div>
 					</div>

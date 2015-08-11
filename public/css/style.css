@@ -20,7 +20,9 @@ main {
 body{
 	padding-top:70px;
 }
-
+.list-group{
+	list-style-type:none;
+}
 /*main page wigets*/
 .widgets{
 	margin-top:10px;
@@ -66,6 +68,7 @@ body{
 	margin-bottom:20px;
 	
 }
+
 /***end publish list********/
 
 /***start profile page**/
@@ -88,7 +91,38 @@ body{
     text-align: center;
 	margin-bottom: 15px;
 }
-
+.col-md-12.comment-section {
+    margin-top: 30px;
+}
+.comment-items{
+	 border-bottom: 1px solid #ccc;
+    list-style: outside none none;
+    margin: 0 0 10px;
+    padding: 0 0 10px;
+}
+.comment-section-head{
+	text-align:center;
+}
+.comment-name, .comment-data {
+    color: #878787;
+    font-size: 0.9em;
+}
+.col-md-12.comment-info {
+    margin-bottom: 5px;
+}
+#comment-message {
+    height: 100px;
+    width: 100%;
+}
+#comment-add {
+    margin-top: 10px;
+}
+.comments-form {
+    background: #f6f6f6 none repeat scroll 0 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+}
 /********end publish detail***************/
 nav{
 	height:50px;
@@ -102,6 +136,7 @@ nav{
     margin:0px;
 	padding-left:10px;
 	list-style:none;
+	overflow-x: hidden;
 }
 .messages-list > li {
     border: 1px solid #ccc;
@@ -111,19 +146,86 @@ nav{
     padding: 10px;
 }
 .message-in{
-	margin-left:10px;
+
 	background: #f3f3f3 none repeat scroll 0 0;
 }
 .message-out{
 	 background: #f3ede1 none repeat scroll 0 0;
 }
+.message-send-input #msg{
+	width:100%
+}
+#send {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
 /***end seng message list ****/
 
-/***users***/
+/***start users***/
 .user-item.online > .user-status-online {
     
 }
-/***********/
+/*****end users******/
+
+/******user list page********/
+.profile-page .user-item{
+    list-style: outside none none;
+    margin: 0;
+ 
+}
+.user-item li{
+	text-align:center;
+}
+/*********end user list page********************/
+
+/********* message show page*********************/
+.user-messages-list {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+.user-messages-list > .col-md-3 {
+    text-align: center;
+}
+.user-messages-list ul {
+    display: inline-block;
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+
+}
+.confirmed-0 {
+    border: 1px solid blue;
+}
+.avatar-img-wrapper {
+    height: 100px;
+    width: 100px;
+}
+.user-messages-list ul li {
+    display: inline-block;
+}
+.current-user-avatar {
+    float: left;
+    text-align: center;
+}
+/*************************************************/
+/*****start publication/category******/
+.publication-cell {
+    border: 1px solid #ccc;
+    height: 350px;
+    margin-bottom: 25px;
+    overflow: hidden;
+    padding: 5px;
+    text-align: center;
+    
+}
+.pub-image-list img{
+	  height: 100px;
+}
+.pub-image-list{
+	display:block;
+}
+/*****end publication/category******/
+
 footer {
 	background: #f5f5f5 none repeat scroll 0 0;
     border-top: 1px solid #ccc;

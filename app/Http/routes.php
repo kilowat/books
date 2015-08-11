@@ -55,12 +55,46 @@ Route::get('user/profile/{id}/messages/send',[
 		'uses'=>'MessagesController@send'
 ]);
 
-
-/*****user publications********/
-Route::get('user/profile/publication/show',[
-		'as'=>'user.publication.show',
+/*
+/*****user publications********
+Route::get('user/profile/publication/index',[
+		'as'=>'user.publication.index',
 		'middleware'=>'auth',
-		'uses'=>'PublicationController@show'
+		'uses'=>'PublicationController@index'
 ]);
-/**************************/
+Route::get('user/profile/publication/create',[
+		'as'=>'user.publication.create',
+		'middleware'=>'auth',
+		'uses'=>'PublicationController@create'
+]);
+**************************/
+
+
+Route::get('publication/category/{category}/{publication}',[
+		'as'=>'publication.detail',
+		'uses'=>'PublicationController@detail'
+])->where(['publication' => '[0-9]+', 'category' => '[А-яA-z0-9]+']);
+
+Route::get('publication/category/{category}',[
+		'as'=>'publication.category',
+		'uses'=>'PublicationController@category'
+]);
+
+Route::get('publication',[
+		'as'=>'publication.all',
+		'uses'=>'PublicationController@all'
+]);
+
+
+
+Route::resource('user/publication','PublicationController');
+
+
+
+Route::bind('publication',function($id){
+	return App\Model\Publication::find($id);
+});
+
+
+
 Route::controller('auth', 'Auth\AuthController');

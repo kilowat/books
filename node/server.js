@@ -4,7 +4,7 @@ var fs = require('fs');
 var Redis = require('ioredis');
 var redis = new Redis();
 var activeUsers = {};
-
+var dateFormat = require('dateformat');
 app.listen(81);
 
 io.on('connection', function (socket) {
@@ -24,7 +24,9 @@ io.on('connection', function (socket) {
 	socket.on('send', function (data) {
 
 		var userMessageModel = require('./model/UserMessage');
-
+		var dateF = dateFormat(new Date(), "dd-mm-yyyy H:MM:ss");
+		data.incom.dateF = dateF;
+		data.out.dateF = dateF;
 		socket.to('id_'+data.incom.user.id).emit('in',data.incom);
 		
 		socket.to('id_'+data.incom.user.id).emit('inMsgSignal',data.incom);
@@ -39,7 +41,21 @@ io.on('connection', function (socket) {
 	
 	socket.on('messageTake',function(userId){
 		console.log('user'+userId+'take message');
-	});	  
+	});
+	
+	socket.on('msgConfirm',function(data){
+	
+		var userMessageModel = require('./model/UserMessage');
+		userMessageModel.messageConfirm(data);
+	});
+	
+	socket.on('commentAdd',function(data){
+		var commentModel = require('./model/Comment');
+		data.dateF = dateFormat(new Date(), "dd-mm-yyyy H:MM:ss");
+		commentModel.add(data);
+		io.emit('commentAdd',data);
+	});
+	
 	 socket.on('disconnect',function(){
 		// console.log(io.sockets.adapter.rooms);
 		 var userInRoom = io.sockets.adapter.rooms[socket.user_id];

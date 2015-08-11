@@ -138,13 +138,17 @@ return [
         Illuminate\View\ViewServiceProvider::class,
     	Illuminate\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-
+    	Arrilot\Widgets\ServiceProvider::class,
+    	Barryvdh\Debugbar\ServiceProvider::class,
+    	Menu\MenuServiceProvider::class,
+		
         /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+    	App\Providers\IncServiceProvider::class,
 
     ],
 
@@ -196,6 +200,10 @@ return [
     	'Html'		=> Illuminate\Html\HtmlFacade::class,
     	'Form'		=> Illuminate\Html\FormFacade::class,
         'Image'     => Intervention\Image\Facades\Image::class,
+    	'Widget'    => Arrilot\Widgets\Facade::class,
+    	'AsyncWidget'=> Arrilot\Widgets\AsyncFacade::class,
+    	'Debugbar' => Barryvdh\Debugbar\Facade::class,
+    	'Menu' 	   => Menu\Menu::class,
 
     ],
 
