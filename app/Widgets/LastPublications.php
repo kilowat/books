@@ -24,12 +24,17 @@ class LastPublications extends AbstractWidget
     {
         if($user_id){
             $publications = Publication::where('user_id','=',$user_id)
+                            ->with('category')
                             ->take($this->config['limit'])
+                            ->orderBy('created_at','desc')
                             ->get();
         }else{
-            $publications = Publication::take($this->config['limit'])->get();
+            $publications = Publication::take($this->config['limit'])
+                            ->with('category')
+                            ->orderBy('created_at','desc')
+                            ->get();
         }
-
+       
         return view("widgets.last_publications", [
             'config' => $this->config,
         ],compact('publications'));
