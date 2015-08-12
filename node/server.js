@@ -18,6 +18,7 @@ io.on('connection', function (socket) {
 
 		activeUsers[id] = user;
 		io.emit('usersOnline',activeUsers);
+		//socket.broadcast.emit('userOnlineAdd',user);
 
 	});
 	
@@ -63,10 +64,13 @@ io.on('connection', function (socket) {
 	 socket.on('disconnect',function(){
 		// console.log(io.sockets.adapter.rooms);
 		 var userInRoom = io.sockets.adapter.rooms[socket.user_id];
+		 var leaveUser = activeUsers[socket.user_id];
 		 if(userInRoom === undefined)
 			delete activeUsers[socket.user_id];
 		 //update online user info
 		 io.emit('usersOnline',activeUsers)
+
+		 //io.emit('userOut',leaveUser);
 
 	 	socket.leave(socket.user_id);
 	 	socket.leave(socket.id);

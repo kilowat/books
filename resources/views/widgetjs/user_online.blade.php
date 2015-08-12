@@ -8,13 +8,14 @@
 $(document).ready(function(){
 	socket.emit('getActiveUser');
 	socket.on('getActiveUser',function(data){
-		console.log(data);
+		
 		var html = '';
 		var user;
+
 		for (id in data){
 
 			html+='<li id="user-online-id-'+data[id].id+'">';
-			html+='<a class="avatar"><img src="/images/'+data[id].avatar+'"></a>';
+			html+='<a class="avatar"><img width= 50 src="'+_app.getAvatar('mini',data[id].id,data[id].avatar)+'"></a>';
 			html+='<a>'+data[id].name+'</a>'
 			html+='</li>';
 		}
