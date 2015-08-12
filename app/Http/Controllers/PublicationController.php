@@ -84,8 +84,9 @@ class PublicationController extends Controller
     {
     	$publication->user_name = $publication->user->name;
     	$comments = $publication->comments()->with('user')->get();
-    	
-    	return view('pages.publications.detail',compact('publication','comments'));
+    	$title = $publication->name;
+
+    	return view('pages.publications.detail',compact('publication','comments','title'));
     }
     
     /**
@@ -105,9 +106,12 @@ class PublicationController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit(Publication $publication)
+    public function edit(Publication $publication, Category $category)
     {
-    	return view('pages.publications.edit',compact('publication'));
+    	return view('pages.publications.edit',compact('publication'))
+                ->with([
+                    'category'=>$category->lists('name','id')
+                    ]);
     }
 
     /**

@@ -5,37 +5,37 @@
 	<!--start left sidebar-->
 	@widget('UserMenu')
 	<!--end left sidebar-->
-	<div class="col-md-6">
+	<div class="col-md-9">
 		<main class="content">
 			{!!Form::open(['method'=>'post','action'=>'PublicationController@store','enctype'=>'multipart/form-data'])!!}
 				<div class="row input-list">
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="name">Название</label>
-						<div class="col-md-8">
+						<label class="col-md-3 control-label" for="name">Название</label>
+						<div class="col-md-9">
 							<input type="text" class="form-control" name="name" id="name">
 						</div>
 					</div>
 				</div>
 				<div class="row input-list">	
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="name">Описание</label>
-						<div class="col-md-8">
-							<input type="text" class="form-control" name="description" id="description">
+						<label class="col-md-3 control-label" for="name">Описание</label>
+						<div class="col-md-9">
+							<textarea class="form-control" name="description" id="description"></textarea>
 						</div>
 					</div>
 				</div>
 				<div class="row input-list">	
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="category_id">Категория</label>
-						<div class="col-md-8">
+						<label class="col-md-3 control-label" for="category_id">Категория</label>
+						<div class="col-md-9">
 							{!!Form::select('category_id',$categories)!!}
 						</div>
 					</div>
 				</div>
 				<div class="row input-list">	
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="category_id">Обложка</label>
-						<div class="col-md-8">
+						<label class="col-md-3 control-label" for="category_id">Обложка</label>
+						<div class="col-md-9">
 							{!!Form::file('image')!!}
 						</div>
 					</div>

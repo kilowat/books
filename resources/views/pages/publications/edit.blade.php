@@ -5,30 +5,30 @@
 	<!--start left sidebar-->
 	@widget('UserMenu')
 	<!--end left sidebar-->
-	<div class="col-md-6">
+	<div class="col-md-9">
 		<main class="content">
 			{!!Form::Model($publication,['method'=>'PUT','route'=>['user.publication.update',$publication->id]])!!}
 				<div class="row input-list">
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="name">Название</label>
-						<div class="col-md-8">
+						<label class="col-md-3 control-label" for="name">Название</label>
+						<div class="col-md-9">
 							{!!Form::text('name',null,['class'=>'form-control','id'=>'name'])!!}
 						</div>
 					</div>
 				</div>
 				<div class="row input-list">	
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="name">Описание</label>
-						<div class="col-md-8">
-							{!!Form::text('description',null,['class'=>'form-control','id'=>'description'])!!}
+						<label class="col-md-3 control-label" for="name">Описание</label>
+						<div class="col-md-9">
+							{!!Form::textarea('description',null,['class'=>'form-control','id'=>'description'])!!}
 						</div>
 					</div>
 				</div>
 				<div class="row input-list">	
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="category_id">Категория</label>
-						<div class="col-md-8">
-							
+						<label class="col-md-3 control-label" for="category_id">Категория</label>
+						<div class="col-md-9">
+							{!!Form::select('category_id',$category)!!}
 						</div>
 					</div>
 				</div>

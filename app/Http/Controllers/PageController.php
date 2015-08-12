@@ -11,6 +11,8 @@ class PageController extends Controller
 {
      public function index(){
 
-		return view('pages.index');
+     	$title = 'Главная';
+
+		return view('pages.index',compact('title'));
 	}
 }
