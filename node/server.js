@@ -8,7 +8,7 @@ var dateFormat = require('dateformat');
 app.listen(81);
 
 io.on('connection', function (socket) {
-	
+
 	socket.emit('connect');
 	
 	socket.on('join',function(user){
@@ -56,6 +56,10 @@ io.on('connection', function (socket) {
 		io.emit('commentAdd',data);
 	});
 	
+	socket.on('getActiveUser',function(){
+		socket.emit('getActiveUser',activeUsers);
+	});
+
 	 socket.on('disconnect',function(){
 		// console.log(io.sockets.adapter.rooms);
 		 var userInRoom = io.sockets.adapter.rooms[socket.user_id];
@@ -82,7 +86,7 @@ io.on('connection', function (socket) {
 	},1000) 
 */
 
-console.log(process.memoryUsage());
+//console.log(process.memoryUsage());
 //console.log(io.sockets);
 	/****************************************/
 

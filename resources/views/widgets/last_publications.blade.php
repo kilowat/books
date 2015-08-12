@@ -1,4 +1,4 @@
-<h4>Последнии публикации</h4>
+
 <ul>
 	@foreach ($publications as $publication)
 	<li> 

@@ -10,40 +10,11 @@
 				
 				<div class="row widgets">
 					<div class="col-md-4 hidden-sm hidden-xs ">
-						<div class="widget new-user">
-							<h4>Кто на сайте</h4>
-							<ul>
-								<li>
-									<a class="avatar" href=""><img src="images/avatar.jpg"></a>
-									<a href="#">Иван иванов</a><br>
-								</li>
-								<li>
-									<a class="avatar" href=""><img src="images/avatar.jpg"></a>
-									<a href="#">Иван иванов</a><br>
-								</li>
-								<li>
-									<a class="avatar"  href=""><img src="images/avatar.jpg"></a>
-									<a href="#">Иван иванов-сидоров</a><br>
-								</li>
-							</ul>
-							<ul>
-								<li>
-									<a class="avatar"  href=""><img src="images/avatar.jpg"></a>
-									<a href="#">Иван иванов</a><br>
-								</li>
-								<li>
-									<a class="avatar"  href=""><img src="images/avatar.jpg"></a>
-									<a href="#">Иван иванов</a><br>
-								</li>
-								<li>
-									<a class="avatar"  href=""><img src="images/avatar.jpg"></a>
-									<a href="#">Иван иванов</a><br>
-								</li>
-							</ul>
-						 </div>
+						@include('widgetjs.user_online')
 					</div>
 					<div class="col-md-4">
 						<div class="widget last-published">
+							<h4>Последнии публикации</h4>
 							@widget('LastPublications',['limit'=>8])
 						 </div>
 					</div>
