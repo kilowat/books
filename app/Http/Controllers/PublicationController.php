@@ -126,7 +126,6 @@ class PublicationController extends Controller
         $request = $request->all();
         $request['active'] = (empty($active)) ? 0:1;
     	$publication->update($request );
-
         
         $publication->save();
         
