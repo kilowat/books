@@ -7,12 +7,5 @@
 		 	<li class="list-group-item">
 				<a href="{{route('user.publication.index')}}">Мои публикации</a>
 			</li>
-			<li class="list-group-item">
-				<span class="badge">14</span>
-				<a href="">Мои Отзывы</a>
-			</li>
-			<li class="list-group-item">
-				<a href="">Мои закладки</a>
-			</li>
 	</ul>
 </div>

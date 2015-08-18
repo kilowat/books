@@ -46,6 +46,7 @@ class PublicationController extends Controller
     	$publications = $publication
     					->with('user')
     					->with('category')
+                        ->active()
     					->paginate(6);
 
     	return view('pages.publications.all',compact('publications'));
@@ -74,7 +75,7 @@ class PublicationController extends Controller
     	$request = $request->all();
     	$request['user_id'] = $curUser->id;
     	$request['image'] = $file_name;
-  
+
         Publication::create($request);
   
         return redirect()->back();
@@ -121,8 +122,12 @@ class PublicationController extends Controller
      * @return Response
      */
     public function update(PublicationRequest $request,Publication $publication)
-    {
-    	$publication->update($request->all());
+    {   
+        $request = $request->all();
+        $request['active'] = (empty($active)) ? 0:1;
+    	$publication->update($request );
+
+        
         $publication->save();
         
         return redirect()->back();

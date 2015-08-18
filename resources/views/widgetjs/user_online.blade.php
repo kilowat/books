@@ -11,7 +11,7 @@ $(document).ready(function(){
 		
 		var html = '';
 		var user;
-
+		$('#online-user-list li').remove();
 		for (id in data){
 
 			html+='<li id="user-online-id-'+data[id].id+'">';

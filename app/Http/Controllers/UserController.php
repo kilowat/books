@@ -6,9 +6,11 @@ use App\Http\Requests;
 use App\Http\Requests\UserProfileEditRequest;
 use App\Http\Controllers\Controller;
 use App\Model\User;
+use App\Model\Comment;
 use Storage;
 use Image;
 use Auth;
+
 class UserController extends Controller
 {
 	
@@ -16,13 +18,16 @@ class UserController extends Controller
 		
 		$this->userDisk = Storage::disk('users');
 	}
+
     public function profile(User $user){
-    	
+
+   
 		if(Auth::user()->id === $user->id)
 			return view('pages.user.curent_profile',compact('user'));
 		else
 			return view('pages.user.profile',compact('user'));
 	}
+
 	public function edit(){
 		
 		return view('pages.user.edit')->with(['user'=>Auth::user()]);

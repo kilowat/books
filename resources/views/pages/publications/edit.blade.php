@@ -33,6 +33,12 @@
 					</div>
 				</div>
 				<div class="row input-list">	
+					<div class="input-group">
+						{!!Form::label('active','Активность')!!}
+						{!!Form::checkbox('active',null)!!}
+					</div>
+				</div>
+				<div class="row input-list">	
 					<div class="form-group">
 						<div class="col-md-12">
 							<input type="submit" value="Отправить">
