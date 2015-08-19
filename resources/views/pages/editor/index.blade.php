@@ -3,6 +3,8 @@
 <style>
 	iframe {
     border: 1px solid #ccc;
+    min-height: 300px;
+    width: 100%;
 }
 </style>
 <div class="row">
