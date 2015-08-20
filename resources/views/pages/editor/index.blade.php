@@ -105,5 +105,9 @@ function setCenter() {
 			$('#frameId').contents().find('body').html(e);
 		});
 	});
+
+     
+  
+    
 </script>
 @endsection

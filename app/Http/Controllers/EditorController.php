@@ -22,7 +22,7 @@ class EditorController extends Controller
 
     public function save(Request $request){
     	$req = $request->all();
-    	$text = $request['text'];
+    	$text = nl2br($request['text']);
 
     	$pubId = $request['pubId'];
     	$xml = new \XMLWriter();
