@@ -70,6 +70,12 @@ class PublicationController extends Controller
      */
     public function store(PublicationRequest $request)
     {	
+        $fileText = $request->all()['text'];
+        $handle = fopen($fileText, 'w+');
+        
+       
+        fclose($file);
+
     	$curUser = \Auth::user();
     	$file_name = $this->dispatch(new \App\Jobs\SaveUserDataImage($curUser,$request->file('image'),'files'));
     	$request = $request->all();
