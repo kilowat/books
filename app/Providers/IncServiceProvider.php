@@ -25,6 +25,6 @@ class IncServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        
     }
 }

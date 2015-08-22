@@ -10,6 +10,7 @@ use App\Model\Publication;
 use App\Model\Category;
 use App\Http\Requests\PublicationRequest;
 use App\Lib\Menu;
+use App\Lib\PubText;
 
 class PublicationController extends Controller
 {
@@ -43,6 +44,7 @@ class PublicationController extends Controller
     
     public function all(Publication $publication)
     {
+    	
     	$publications = $publication
     					->with('user')
     					->with('category')
@@ -80,44 +82,10 @@ class PublicationController extends Controller
     	$request['user_id'] = $curUser->id;
     	$request['image'] = $file_name;
 
-        $pubId = Publication::create($request);
-  
-        if (!is_dir(storage_path('app'.DIRECTORY_SEPARATOR.'users'.DIRECTORY_SEPARATOR.$curUser->id))) {
-        	// dir doesn't exist, make it
-        	mkdir(storage_path('app'.DIRECTORY_SEPARATOR.'users'.DIRECTORY_SEPARATOR.$curUser->id));
-        	
-        	if (!is_dir(storage_path('app'.DIRECTORY_SEPARATOR.'users'.DIRECTORY_SEPARATOR.$curUser->id.DIRECTORY_SEPARATOR.'publications'))) {
-        		// dir doesn't exist, make it
-        		mkdir(storage_path('app'.DIRECTORY_SEPARATOR.'users'.DIRECTORY_SEPARATOR.$curUser->id.DIRECTORY_SEPARATOR.'publications'));
-        		
-        		if (!is_dir(storage_path('app'.DIRECTORY_SEPARATOR.'users'.DIRECTORY_SEPARATOR.$curUser->id.DIRECTORY_SEPARATOR.'publications'.DIRECTORY_SEPARATOR.$pubId->id))) {
-        			// dir doesn't exist, make it
-        			mkdir(storage_path('app'.DIRECTORY_SEPARATOR.'users'.DIRECTORY_SEPARATOR.$curUser->id.DIRECTORY_SEPARATOR.'publications'.DIRECTORY_SEPARATOR.$pubId->id));
-        		}
-        	
-        	}
-        	
-        	
-        }
-        
-       
-        if(!empty($request['text']))
-        	$file = file($request['text']); // имя файла
-        
-        $count = 100; //по сколько разбиваем...
-        
-        $i = 0; $y = 0;
-        
-        foreach($file as $string){
-        	if ($i == $count) {
-        		$y++;
-        		$i = 0;
-        	}
-        	file_put_contents(storage_path('app'.DIRECTORY_SEPARATOR.'users'.DIRECTORY_SEPARATOR.$curUser->id.DIRECTORY_SEPARATOR.'publications'.DIRECTORY_SEPARATOR.$pubId->id.DIRECTORY_SEPARATOR.'page-' . $y . '.html'), $string, FILE_APPEND);
-        	
-        	$i++;
-        
-        }
+        $pubId = Publication::create($request)->id;
+  		
+		$test = new PubText();
+		$test->saveText($pubId, $request['text']);
         
         return redirect()->back();
     }

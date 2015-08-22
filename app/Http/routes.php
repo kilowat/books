@@ -108,6 +108,7 @@ Route::bind('publication',function($id){
 	return App\Model\Publication::find($id);
 });
 
-
+Route::controller('reader', 'ReaderController');
+	
 
 Route::controller('auth', 'Auth\AuthController');
