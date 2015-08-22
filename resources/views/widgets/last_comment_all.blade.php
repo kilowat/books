@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-Последнии комментарии
-=======
+
 @if(!empty($comments))
 	@foreach($comments as $comment)
 		<ul>
@@ -16,4 +14,3 @@
 		</ul>
 	@endforeach
 @endif
->>>>>>> bf800e2bcba99a50da54aa944095ad167b0c3d52
