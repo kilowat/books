@@ -7,9 +7,9 @@
 	<!--end left sidebar-->
 	<div class="col-md-6">
 		<main class="content">
-			{{$publication->name}}<br>
-			{{$publication->description}}<br>
-			<img src="/upload/users/{{Auth::user()->id}}/files/mini_{{$publication->image}}">
+			<h1>{{$publication->name}}</h1>
+			<img src="{{Html::showUserImage('normal',$publication->user->id,'files',$publication->image)}}"><br>
+			<b>Описание:</b>{{$publication->description}}<br>
 		</main>
 	</div>
 	<div class="push"></div>

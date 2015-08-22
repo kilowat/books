@@ -47,6 +47,7 @@
 				$html.='<th>';
 				$html.='<a href="'.route($edit.'.show',$item->id).'">show</a> | ';
 				$html.='<a href="'.route($edit.'.edit',$item->id).'">edit</a> | ';
+				$html.='<a href="'.route($edit.'.editor.index',$item->id).'">writer</a> | ';
 				$html.='<a href="'.route($edit.'.destroy',$item->id).'">del</a>';
 				$html.='</th>';
 			}

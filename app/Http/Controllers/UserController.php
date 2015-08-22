@@ -1,28 +1,27 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Input;
 use App\Http\Requests;
 use App\Http\Requests\UserProfileEditRequest;
 use App\Http\Controllers\Controller;
 use App\Model\User;
+use App\Model\Comment;
 use Storage;
 use Image;
 use Auth;
 
 class UserController extends Controller
 {
-
 	
 	function __construct(){
 		
 		$this->userDisk = Storage::disk('users');
-
 	}
+
     public function profile(User $user){
-    	
+
+   
 		if(Auth::user()->id === $user->id)
 			return view('pages.user.curent_profile',compact('user'));
 		else
@@ -43,7 +42,6 @@ class UserController extends Controller
 		Auth::user()->save();
 		
 		return redirect()->back();
-
 	}
 	
 	public function usersList(User $users){

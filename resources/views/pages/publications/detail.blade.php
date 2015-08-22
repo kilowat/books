@@ -78,7 +78,7 @@ socket.on('commentAdd',function(data){
 	var html = '';
 		html+='	<ul class="row comment-items">';
 			html+='<li class="col-md-12 comment-info">';
-			html+='<li><span class="comment-name">'+data.user.name+'</span><span class="comment-data">'+data.dateF+'</span></li>';
+			html+='<span class="comment-name">'+data.user.name+'</span><span class="comment-data">'+data.dateF+'</span></li>';
 			html+=data.message;
 			html+='</li>';
 		html+='</ul>';

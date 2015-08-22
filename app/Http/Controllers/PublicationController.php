@@ -46,6 +46,7 @@ class PublicationController extends Controller
     	$publications = $publication
     					->with('user')
     					->with('category')
+                        ->active()
     					->paginate(6);
 
     	return view('pages.publications.all',compact('publications'));
@@ -69,12 +70,18 @@ class PublicationController extends Controller
      */
     public function store(PublicationRequest $request)
     {	
+        $fileText = $request->all()['text'];
+        $handle = fopen($fileText, 'w+');
+        
+       
+        fclose($file);
+
     	$curUser = \Auth::user();
     	$file_name = $this->dispatch(new \App\Jobs\SaveUserDataImage($curUser,$request->file('image'),'files'));
     	$request = $request->all();
     	$request['user_id'] = $curUser->id;
     	$request['image'] = $file_name;
-  
+
         Publication::create($request);
   
         return redirect()->back();
@@ -84,8 +91,9 @@ class PublicationController extends Controller
     {
     	$publication->user_name = $publication->user->name;
     	$comments = $publication->comments()->with('user')->get();
-    	
-    	return view('pages.publications.detail',compact('publication','comments'));
+    	$title = $publication->name;
+
+    	return view('pages.publications.detail',compact('publication','comments','title'));
     }
     
     /**
@@ -105,9 +113,12 @@ class PublicationController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit(Publication $publication)
+    public function edit(Publication $publication, Category $category)
     {
-    	return view('pages.publications.edit',compact('publication'));
+    	return view('pages.publications.edit',compact('publication'))
+                ->with([
+                    'category'=>$category->lists('name','id')
+                    ]);
     }
 
     /**
@@ -117,8 +128,11 @@ class PublicationController extends Controller
      * @return Response
      */
     public function update(PublicationRequest $request,Publication $publication)
-    {
-    	$publication->update($request->all());
+    {   
+        $request = $request->all();
+        $request['active'] = (empty($active)) ? 0:1;
+    	$publication->update($request );
+        
         $publication->save();
         
         return redirect()->back();

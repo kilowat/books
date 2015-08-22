@@ -69,6 +69,19 @@ Route::get('user/profile/publication/create',[
 ]);
 **************************/
 
+Route::get('user/publication/{id}/editor',[
+		'as'=>'user.publication.editor.index',
+		'uses'=>'EditorController@index',
+	]);
+Route::post('user/publication/{id}/editor/save',[
+		'as'=>'user.publication.editor.save',
+		'uses'=>'EditorController@save',
+	]);
+Route::post('user/publication/{id}/editor/page',[
+		'as'=>'user.publication.editor.page',
+		'uses'=>'EditorController@page',
+	]);
+
 
 Route::get('publication/category/{category}/{publication}',[
 		'as'=>'publication.detail',
