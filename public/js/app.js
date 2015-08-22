@@ -30,7 +30,7 @@ var _app = new Bapp();
 
 /******sockets listeners********/
 
-	socket = io('192.168.1.5:81');
+	socket = io('localhost:81');
 
 	socket.on('inMsgSignal',function(data){
 		document.getElementById('signal-status').innerHTML = 'Новое событие'
